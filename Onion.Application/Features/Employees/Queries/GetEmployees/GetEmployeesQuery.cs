@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using $safeprojectname$.Filters;
+using $safeprojectname$.Interfaces;
 using $safeprojectname$.Interfaces.Repositories;
 using $safeprojectname$.Wrappers;
+using $ext_projectname$.Domain.Entities;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
@@ -34,23 +36,23 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
 
         public async Task<PagedResponse<IEnumerable<Entity>>> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
         {
-
+            var validFilter = request;
             //filtered fields security
-            if (!string.IsNullOrEmpty(request.Fields))
+            if (!string.IsNullOrEmpty(validFilter.Fields))
             {
                 //limit to fields in view model
-                validFilter.Fields = _modelHelper.ValidateModelFields<GetEmployeesViewModel>(request.Fields);
+                validFilter.Fields = _modelHelper.ValidateModelFields<GetEmployeesViewModel>(validFilter.Fields);
 
             }
-            if (string.IsNullOrEmpty(request.Fields))
+            if (string.IsNullOrEmpty(validFilter.Fields))
             {
                 //default fields from view model
                 validFilter.Fields = _modelHelper.GetModelFields<GetEmployeesViewModel>();
             }
             // query based on filter
-            var entityEmployees = await _employeeRepository.GetPagedEmployeeReponseAsync(request);
+            var entityEmployees = await _employeeRepository.GetPagedEmployeeReponseAsync(validFilter);
             // response wrapper
-            return new PagedResponse<IEnumerable<Entity>>(entityEmployees, request.PageNumber, request.PageSize);
+            return new PagedResponse<IEnumerable<Entity>>(entityEmployees, validFilter.PageNumber, validFilter.PageSize);
         }
     }
 }
