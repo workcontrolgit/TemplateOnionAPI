@@ -1,0 +1,41 @@
+﻿  <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>OnionApi Template (ASP.NET Core, EntityFramework, Swagger, Linq, Bogus)</Name>
+    <Description>A project template for building ASP.NET WebAPI with Core layer, Application layer, Infrastructure layer and WebAPI layer</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>MyOnionApi</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <ProjectCollection>
+      <SolutionFolder Name="Core">
+        <ProjectTemplateLink ProjectName="$projectname$.Application" CopyParameters="true">
+          Onion.Application\MyTemplate.vstemplate
+        </ProjectTemplateLink>
+        <ProjectTemplateLink ProjectName="$projectname$.Domain" CopyParameters="true">
+          Onion.Domain\MyTemplate.vstemplate
+        </ProjectTemplateLink>
+      </SolutionFolder>
+      <SolutionFolder Name="Infrastructure">
+        <ProjectTemplateLink ProjectName="$projectname$.Infrastructure.Persistence" CopyParameters="true">
+          Onion.Infrastructure.Persistence\MyTemplate.vstemplate
+        </ProjectTemplateLink>
+        <ProjectTemplateLink ProjectName="$projectname$.Infrastructure.Shared" CopyParameters="true">
+          Onion.Infrastructure.Shared\MyTemplate.vstemplate
+        </ProjectTemplateLink>
+      </SolutionFolder>
+      <SolutionFolder Name="WebApi">
+        <ProjectTemplateLink ProjectName="$projectname$.WebApi" CopyParameters="true">
+          Onion.WebApi\MyTemplate.vstemplate
+        </ProjectTemplateLink>
+      </SolutionFolder>
+    </ProjectCollection>
+  </TemplateContent>
+</VSTemplate>

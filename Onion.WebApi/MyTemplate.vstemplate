@@ -1,0 +1,70 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Onion.WebApi</Name>
+    <Description>This is also known as the Presentation Layer, where you would put in the project that the user can interact with. In our case it is the WebAPI Project.</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Onion.WebApi</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="Onion.WebApi.csproj" File="Onion.WebApi.csproj" ReplaceParameters="true">
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <Folder Name="PublishProfiles" TargetFolderName="PublishProfiles">
+          <ProjectItem ReplaceParameters="false" TargetFileName="FolderProfile.pubxml">FolderProfile.pubxml</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">launchSettings.json</ProjectItem>
+      </Folder>
+      <Folder Name="Controllers" TargetFolderName="Controllers">
+        <Folder Name="v1" TargetFolderName="v1">
+          <ProjectItem ReplaceParameters="true" TargetFileName="EmployeesController.cs">EmployeesController.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="PositionsController.cs">PositionsController.cs</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="BaseApiController.cs">BaseApiController.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MetaController.cs">MetaController.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Extensions" TargetFolderName="Extensions">
+        <ProjectItem ReplaceParameters="true" TargetFileName="AppExtensions.cs">AppExtensions.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ServiceExtensions.cs">ServiceExtensions.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Logs" TargetFolderName="Logs">
+        <Folder Name="Error" TargetFolderName="Error">
+          <ProjectItem ReplaceParameters="false" TargetFileName="error_20201226.log">error_20201226.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="error_20201227.log">error_20201227.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="error_20201228.log">error_20201228.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="error_20201229.log">error_20201229.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="error_20201230.log">error_20201230.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="error_20201231.log">error_20201231.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="error_20210101.log">error_20210101.log</ProjectItem>
+        </Folder>
+        <Folder Name="Info" TargetFolderName="Info">
+          <ProjectItem ReplaceParameters="false" TargetFileName="info_20201226.log">info_20201226.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="info_20201227.log">info_20201227.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="info_20201228.log">info_20201228.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="info_20201229.log">info_20201229.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="info_20201230.log">info_20201230.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="info_20201231.log">info_20201231.log</ProjectItem>
+          <ProjectItem ReplaceParameters="false" TargetFileName="info_20210101.log">info_20210101.log</ProjectItem>
+        </Folder>
+      </Folder>
+      <Folder Name="Middlewares" TargetFolderName="Middlewares">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ErrorHandlerMiddleware.cs">ErrorHandlerMiddleware.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Models" TargetFolderName="Models">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Metadata.cs">Metadata.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.Development.json">appsettings.Development.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.WebApi.xml">Onion.WebApi.xml</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Startup.cs">Startup.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
