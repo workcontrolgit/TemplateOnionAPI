@@ -59,8 +59,10 @@ namespace $safeprojectname$.Repositories
                 result = result.Select<Employee>("new(" + fields + ")");
             }
             // retrieve data to list
-
-            var resultData = await result.ToListAsync();
+            // var resultData = await result.ToListAsync();
+            // Note: Bogus library does not support await for AsQueryable.
+            // Workaround:  fake await with Task.Run and use regular ToList
+            var resultData = await Task.Run(() => result.ToList());
 
             // shape data
             return _dataShaper.ShapeData(resultData, fields);

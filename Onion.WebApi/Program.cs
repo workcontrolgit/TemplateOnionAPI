@@ -30,12 +30,11 @@ namespace $safeprojectname$
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
-                    Log.Information("Finished Seeding Default Data");
                     Log.Information("Application Starting");
                 }
                 catch (Exception ex)
                 {
-                    Log.Warning(ex, "An error occurred seeding the DB");
+                    Log.Warning(ex, "An error occurred starting the application");
                 }
                 finally
                 {
