@@ -31,7 +31,7 @@
           Onion.Infrastructure.Shared\MyTemplate.vstemplate
         </ProjectTemplateLink>
       </SolutionFolder>
-      <SolutionFolder Name="WebApi">
+      <SolutionFolder Name="Presentation">
         <ProjectTemplateLink ProjectName="$projectname$.WebApi" CopyParameters="true">
           Onion.WebApi\MyTemplate.vstemplate
         </ProjectTemplateLink>
