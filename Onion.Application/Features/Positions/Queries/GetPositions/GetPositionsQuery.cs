@@ -31,23 +31,23 @@ namespace $safeprojectname$.Features.Positions.Queries.GetPositions
 
         public async Task<PagedResponse<IEnumerable<Entity>>> Handle(GetPositionsQuery request, CancellationToken cancellationToken)
         {
-
+            var validFilter = request;
             //filtered fields security
-            if (!string.IsNullOrEmpty(request.Fields))
+            if (!string.IsNullOrEmpty(validFilter.Fields))
             {
                 //limit to fields in view model
-                validFilter.Fields = _modelHelper.ValidateModelFields<GetPositionsViewModel>(request.Fields);
+                validFilter.Fields = _modelHelper.ValidateModelFields<GetPositionsViewModel>(validFilter.Fields);
 
             }
-            if (string.IsNullOrEmpty(request.Fields))
+            if (string.IsNullOrEmpty(validFilter.Fields))
             {
                 //default fields from view model
                 validFilter.Fields = _modelHelper.GetModelFields<GetPositionsViewModel>();
             }
             // query based on filter
-            var entityPositions = await _positionRepository.GetPagedPositionReponseAsync(request);
+            var entityPositions = await _positionRepository.GetPagedPositionReponseAsync(validFilter);
             // response wrapper
-            return new PagedResponse<IEnumerable<Entity>>(entityPositions, request.PageNumber, request.PageSize);
+            return new PagedResponse<IEnumerable<Entity>>(entityPositions, validFilter.PageNumber, validFilter.PageSize);
         }
     }
 }
