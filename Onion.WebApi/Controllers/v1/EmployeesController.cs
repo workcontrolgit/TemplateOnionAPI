@@ -16,10 +16,8 @@ namespace $safeprojectname$.Controllers.v1
         /// <returns></returns>
         [HttpGet]
 
-        //public async Task<IActionResult> Get([FromQuery] GetAllEmployeesParameter filter)
         public async Task<IActionResult> Get([FromQuery] GetEmployeesQuery filter)
         {
-            //return Ok(await Mediator.Send(new GetAllEmployeesQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber }));
             return Ok(await Mediator.Send(filter));
         }
 
