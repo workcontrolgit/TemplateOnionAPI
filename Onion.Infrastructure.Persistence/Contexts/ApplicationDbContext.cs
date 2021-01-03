@@ -13,18 +13,15 @@ namespace $safeprojectname$.Contexts
     {
         private readonly IDateTimeService _dateTime;
         private readonly ILoggerFactory _loggerFactory;
-        //private readonly IMockService _mockData;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, 
             IDateTimeService dateTime, 
             ILoggerFactory loggerFactory
-            //IMockService mockData
             ) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             _dateTime = dateTime;
             _loggerFactory = loggerFactory;
-            //_mockData = mockData;
         }
         public DbSet<Position> Positions { get; set; }
 
