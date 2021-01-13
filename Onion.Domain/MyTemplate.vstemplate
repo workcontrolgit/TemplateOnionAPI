@@ -28,7 +28,6 @@
       <Folder Name="Enums" TargetFolderName="Enums">
         <ProjectItem ReplaceParameters="true" TargetFileName="Gender.cs">Gender.cs</ProjectItem>
       </Folder>
-      <Folder Name="Interfaces" TargetFolderName="Interfaces" />
       <Folder Name="Settings" TargetFolderName="Settings">
         <ProjectItem ReplaceParameters="true" TargetFileName="JWTSettings.cs">JWTSettings.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MailSettings.cs">MailSettings.cs</ProjectItem>
