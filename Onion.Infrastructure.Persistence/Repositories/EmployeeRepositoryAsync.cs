@@ -41,24 +41,28 @@ namespace $safeprojectname$.Repositories
             var pageNumber = requestParameter.PageNumber;
             var pageSize = requestParameter.PageSize;
 
+            // setup IQueryAble
             result = _mockData.GetEmployees(1000)
-                .AsQueryable()
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize);
+                .AsQueryable();
 
-            //filter
+            // filter
             FilterByColumn(ref result, employeeNumber, employeeTitle);
+            // order by
             if (!string.IsNullOrWhiteSpace(orderBy))
             {
                 result = result.OrderBy(orderBy);
             }
+            // page
+            result = result
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
 
-            //limit query fields
+            // select columns
             if (!string.IsNullOrWhiteSpace(fields))
             {
                 result = result.Select<Employee>("new(" + fields + ")");
             }
-            // retrieve data to list
+            // ToList
             // var resultData = await result.ToListAsync();
             // Note: Bogus library does not support await for AsQueryable.
             // Workaround:  fake await with Task.Run and use regular ToList
