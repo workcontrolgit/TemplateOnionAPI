@@ -57,11 +57,10 @@ namespace $safeprojectname$.Repositories
             var orderBy = requestParameter.OrderBy;
             var fields = requestParameter.Fields;
 
+            //setup IQueryAble
             var result = _positions
                 .AsNoTracking()
-                .AsExpandable()
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize);
+                .AsExpandable();
 
             // filter
             FilterByColumn(ref result, positionNumber, positionTitle);
@@ -70,14 +69,19 @@ namespace $safeprojectname$.Repositories
             {
                 result = result.OrderBy(orderBy);
             }
-            // query field limit
+            // page
+            result = result
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            // select columns
             if (!string.IsNullOrWhiteSpace(fields))
             {
                 result = result.Select<Position>("new(" + fields + ")");
             }
-            // retrieve data to list
+            // ToList
             var resultData = await result.ToListAsync();
-            // shape data
+            // Shape data
             return _dataShaper.ShapeData(resultData, fields);
 
         }
