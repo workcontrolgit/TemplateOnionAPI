@@ -5,12 +5,13 @@ using $ext_projectname$.Domain.Entities;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace $safeprojectname$.Features.Positions.Queries.GetPositionById
 {
     public class GetPositionByIdQuery : IRequest<Response<Position>>
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public class GetPositionByIdQueryHandler : IRequestHandler<GetPositionByIdQuery, Response<Position>>
         {
             private readonly IPositionRepositoryAsync _positionRepository;

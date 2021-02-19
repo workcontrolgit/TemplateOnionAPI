@@ -5,6 +5,7 @@ using $ext_projectname$.Application.Features.Positions.Queries.GetPositions;
 using $ext_projectname$.Application.Features.Positions.Queries.GetPositionById;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -31,7 +32,7 @@ namespace $safeprojectname$.Controllers.v1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await Mediator.Send(new GetPositionByIdQuery { Id = id }));
         }
@@ -70,7 +71,7 @@ namespace $safeprojectname$.Controllers.v1
         /// <returns></returns>
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<IActionResult> Put(int id, UpdatePositionCommand command)
+        public async Task<IActionResult> Put(Guid id, UpdatePositionCommand command)
         {
             if (id != command.Id)
             {
@@ -86,7 +87,7 @@ namespace $safeprojectname$.Controllers.v1
         /// <returns></returns>
         [HttpDelete("{id}")]
         [Authorize]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             return Ok(await Mediator.Send(new DeletePositionByIdCommand { Id = id }));
         }

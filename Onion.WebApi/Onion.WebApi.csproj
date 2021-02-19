@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Authors>Mukesh Murugan</Authors>
-    <Company>codewithmukesh</Company>
-    <RepositoryUrl>https://github.com/iammukeshm/CleanArchitecture.WebApi</RepositoryUrl>
+    <TargetFramework>net5.0</TargetFramework>
+    <Authors>Fuji Nguyen</Authors>
+    <Company>ScrumAndCoke</Company>
+    <RepositoryUrl>https://github.com/ScrumAndCoke</RepositoryUrl>
     <RepositoryType>Public</RepositoryType>
-    <PackageProjectUrl>https://www.codewithmukesh.com/project/aspnet-core-webapi-clean-architecture/</PackageProjectUrl>
-    <Version>1.1.0</Version>
+    <PackageProjectUrl>https://github.com/ScrumAndCoke</PackageProjectUrl>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -40,9 +40,9 @@
     <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.5.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.7" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="9.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.3" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.1" />
   </ItemGroup>
 
   <ItemGroup>

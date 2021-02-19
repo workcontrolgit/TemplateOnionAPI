@@ -11,7 +11,7 @@ namespace $safeprojectname$.Mock
         public EmployeeBogusConfig()
         {
             Randomizer.Seed = new Random(8675309);
-            RuleFor(p => p.Id, Guid.NewGuid());
+            RuleFor(p => p.Id, f => Guid.NewGuid());
             RuleFor(p => p.FirstName, f => f.Name.FirstName());
             RuleFor(p => p.MiddleName, f => f.Name.FirstName());
             RuleFor(p => p.LastName, f => f.Name.LastName());
