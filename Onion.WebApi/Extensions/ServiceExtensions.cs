@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Text.Json;
 
 namespace $safeprojectname$.Extensions
 {
@@ -19,7 +20,7 @@ namespace $safeprojectname$.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Clean Architecture - $safeprojectname$",
+                    Title = "Clean Architecture - AngularNgxDataTableBackend.WebApi",
                     Description = "This Api will be responsible for overall data distribution and authorization.",
                     Contact = new OpenApiContact
                     {
@@ -53,6 +54,45 @@ namespace $safeprojectname$.Extensions
                         }, new List<string>()
                     },
                 });
+            });
+        }
+
+        public static void AddControllersExtension(this IServiceCollection services)
+        {
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                })
+                ;
+        }
+
+        //Configure CORS to allow any origin, header and method. 
+        //Change the CORS policy based on your requirements.
+        //More info see: https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-3.0
+
+        public static void AddCorsExtension(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
+        }
+
+
+        public static void AddVersionedApiExplorerExtension(this IServiceCollection services)
+        {
+            services.AddVersionedApiExplorer(o =>
+            {
+                o.GroupNameFormat = "'v'VVV";
+                o.SubstituteApiVersionInUrl = true;
             });
         }
         public static void AddApiVersioningExtension(this IServiceCollection services)

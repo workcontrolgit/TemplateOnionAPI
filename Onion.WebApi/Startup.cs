@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using System.Text.Json;
+
 
 namespace $safeprojectname$
 {
@@ -28,23 +28,17 @@ namespace $safeprojectname$
             services.AddPersistenceInfrastructure(_config);
             services.AddSharedInfrastructure(_config);
             services.AddSwaggerExtension();
-            services.AddControllers()
-                .AddJsonOptions(options =>
-                {
-                    options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
-                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-                })
-                ;
-            services.AddApiVersioningExtension();
+            services.AddControllersExtension();
+            // CORS
+            services.AddCorsExtension();
             services.AddHealthChecks();
-            //testing
+            // API version
+            services.AddApiVersioningExtension();
+            // API explorer
             services.AddMvcCore()
                 .AddApiExplorer();
-            services.AddVersionedApiExplorer(o =>
-            {
-                o.GroupNameFormat = "'v'VVV";
-                o.SubstituteApiVersionInUrl = true;
-            });
+            // API explorer version
+            services.AddVersionedApiExplorerExtension();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext dbContext)
@@ -66,6 +60,8 @@ namespace $safeprojectname$
             loggerFactory.AddSerilog();
             app.UseHttpsRedirection();
             app.UseRouting();
+            //Enable CORS
+            app.UseCors("AllowAll");
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwaggerExtension();
