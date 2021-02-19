@@ -4,23 +4,24 @@ using $safeprojectname$.Wrappers;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace $safeprojectname$.Features.Positions.Commands.UpdatePosition
 {
-    public class UpdatePositionCommand : IRequest<Response<int>>
+    public class UpdatePositionCommand : IRequest<Response<Guid>>
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal Salary { get; set; }
-        public class UpdatePositionCommandHandler : IRequestHandler<UpdatePositionCommand, Response<int>>
+        public class UpdatePositionCommandHandler : IRequestHandler<UpdatePositionCommand, Response<Guid>>
         {
             private readonly IPositionRepositoryAsync _positionRepository;
             public UpdatePositionCommandHandler(IPositionRepositoryAsync positionRepository)
             {
                 _positionRepository = positionRepository;
             }
-            public async Task<Response<int>> Handle(UpdatePositionCommand command, CancellationToken cancellationToken)
+            public async Task<Response<Guid>> Handle(UpdatePositionCommand command, CancellationToken cancellationToken)
             {
                 var position = await _positionRepository.GetByIdAsync(command.Id);
 
@@ -34,7 +35,7 @@ namespace $safeprojectname$.Features.Positions.Commands.UpdatePosition
                     position.PositionSalary = command.Salary;
                     position.PositionDescription = command.Description;
                     await _positionRepository.UpdateAsync(position);
-                    return new Response<int>(position.Id);
+                    return new Response<Guid>(position.Id);
                 }
             }
         }
