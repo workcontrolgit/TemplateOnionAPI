@@ -3,6 +3,7 @@ using $safeprojectname$.Interfaces.Repositories;
 using $safeprojectname$.Wrappers;
 using $ext_projectname$.Domain.Entities;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
