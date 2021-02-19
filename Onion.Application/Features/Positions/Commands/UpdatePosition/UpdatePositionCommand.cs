@@ -4,12 +4,13 @@ using $safeprojectname$.Wrappers;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace $safeprojectname$.Features.Positions.Commands.UpdatePosition
 {
     public class UpdatePositionCommand : IRequest<Response<int>>
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal Salary { get; set; }

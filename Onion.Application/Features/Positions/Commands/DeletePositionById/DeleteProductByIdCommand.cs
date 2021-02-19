@@ -4,12 +4,13 @@ using $safeprojectname$.Wrappers;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace $safeprojectname$.Features.Positions.Commands.DeletePositionById
 {
     public class DeletePositionByIdCommand : IRequest<Response<int>>
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public class DeletePositionByIdCommandHandler : IRequestHandler<DeletePositionByIdCommand, Response<int>>
         {
             private readonly IPositionRepositoryAsync _positionRepository;
