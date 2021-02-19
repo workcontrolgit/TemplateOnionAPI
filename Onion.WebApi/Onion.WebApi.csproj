@@ -3,11 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Authors>Fuji Nguyen</Authors>
-    <Company>ScrumAndCoke</Company>
-    <RepositoryUrl>https://github.com/ScrumAndCoke</RepositoryUrl>
+    <Company>workcontrolgit</Company>
+    <RepositoryUrl>https://github.com/workcontrolgit</RepositoryUrl>
     <RepositoryType>Public</RepositoryType>
-    <PackageProjectUrl>https://github.com/ScrumAndCoke</PackageProjectUrl>
-    <Version>1.2.0</Version>
+    <PackageProjectUrl>https://github.com/workcontrolgit</PackageProjectUrl>
+    <Version>1.3.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
