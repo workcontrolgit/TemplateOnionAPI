@@ -5,8 +5,8 @@ using $ext_projectname$.Application.Features.Positions.Queries.GetPositions;
 using $ext_projectname$.Application.Features.Positions.Queries.GetPositionById;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
-using using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
