@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
 {
-    public partial class CreatePositionCommand : IRequest<Response<int>>
+    public partial class CreatePositionCommand : IRequest<Response<Guid>>
     {
         public string PositionTitle { get; set; }
         public string PositionNumber { get; set; }
         public string PositionDescription { get; set; }
         public decimal PositionSalary { get; set; }
     }
-    public class CreatePositionCommandHandler : IRequestHandler<CreatePositionCommand, Response<int>>
+    public class CreatePositionCommandHandler : IRequestHandler<CreatePositionCommand, Response<Guid>>
     {
         private readonly IPositionRepositoryAsync _positionRepository;
         private readonly IMapper _mapper;
@@ -25,11 +25,11 @@ namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
             _mapper = mapper;
         }
 
-        public async Task<Response<int>> Handle(CreatePositionCommand request, CancellationToken cancellationToken)
+        public async Task<Response<Guid>> Handle(CreatePositionCommand request, CancellationToken cancellationToken)
         {
             var position = _mapper.Map<Position>(request);
             await _positionRepository.AddAsync(position);
-            return new Response<int>(position.Id);
+            return new Response<Guid>(position.Id);
         }
     }
 }
