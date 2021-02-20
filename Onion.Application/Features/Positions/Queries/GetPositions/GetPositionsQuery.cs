@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using $safeprojectname$.Filters;
+using $safeprojectname$.Parameters;
 using $safeprojectname$.Interfaces;
 using $safeprojectname$.Interfaces.Repositories;
 using $safeprojectname$.Wrappers;
@@ -15,13 +15,14 @@ namespace $safeprojectname$.Features.Positions.Queries.GetPositions
     {
         public string PositionNumber { get; set; }
         public string PositionTitle { get; set; }
-
     }
+
     public class GetAllPositionsQueryHandler : IRequestHandler<GetPositionsQuery, PagedResponse<IEnumerable<Entity>>>
     {
         private readonly IPositionRepositoryAsync _positionRepository;
         private readonly IMapper _mapper;
         private readonly IModelHelper _modelHelper;
+
         public GetAllPositionsQueryHandler(IPositionRepositoryAsync positionRepository, IMapper mapper, IModelHelper modelHelper)
         {
             _positionRepository = positionRepository;
@@ -32,12 +33,12 @@ namespace $safeprojectname$.Features.Positions.Queries.GetPositions
         public async Task<PagedResponse<IEnumerable<Entity>>> Handle(GetPositionsQuery request, CancellationToken cancellationToken)
         {
             var validFilter = request;
+            var pagination = request;
             //filtered fields security
             if (!string.IsNullOrEmpty(validFilter.Fields))
             {
                 //limit to fields in view model
                 validFilter.Fields = _modelHelper.ValidateModelFields<GetPositionsViewModel>(validFilter.Fields);
-
             }
             if (string.IsNullOrEmpty(validFilter.Fields))
             {
@@ -46,8 +47,10 @@ namespace $safeprojectname$.Features.Positions.Queries.GetPositions
             }
             // query based on filter
             var entityPositions = await _positionRepository.GetPagedPositionReponseAsync(validFilter);
+            var data = entityPositions.data;
+            RecordsCount recordCount = entityPositions.recordsCount;
             // response wrapper
-            return new PagedResponse<IEnumerable<Entity>>(entityPositions, validFilter.PageNumber, validFilter.PageSize);
+            return new PagedResponse<IEnumerable<Entity>>(data, validFilter.PageNumber, validFilter.PageSize, recordCount);
         }
     }
 }
