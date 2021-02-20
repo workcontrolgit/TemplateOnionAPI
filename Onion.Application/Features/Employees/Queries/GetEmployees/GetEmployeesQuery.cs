@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using $safeprojectname$.Filters;
+using $safeprojectname$.Parameters;
 using $safeprojectname$.Interfaces;
 using $safeprojectname$.Interfaces.Repositories;
 using $safeprojectname$.Wrappers;
@@ -20,13 +20,16 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
     {
         //examples:
         public string EmployeeNumber { get; set; }
+
         public string EmployeeTitle { get; set; }
     }
+
     public class GetAllEmployeesQueryHandler : IRequestHandler<GetEmployeesQuery, PagedResponse<IEnumerable<Entity>>>
     {
         private readonly IEmployeeRepositoryAsync _employeeRepository;
         private readonly IMapper _mapper;
         private readonly IModelHelper _modelHelper;
+
         public GetAllEmployeesQueryHandler(IEmployeeRepositoryAsync employeeRepository, IMapper mapper, IModelHelper modelHelper)
         {
             _employeeRepository = employeeRepository;
@@ -42,7 +45,6 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
             {
                 //limit to fields in view model
                 validFilter.Fields = _modelHelper.ValidateModelFields<GetEmployeesViewModel>(validFilter.Fields);
-
             }
             if (string.IsNullOrEmpty(validFilter.Fields))
             {
@@ -51,8 +53,11 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
             }
             // query based on filter
             var entityEmployees = await _employeeRepository.GetPagedEmployeeReponseAsync(validFilter);
+            var data = entityEmployees.data;
+            RecordsCount recordCount = entityEmployees.recordsCount;
+
             // response wrapper
-            return new PagedResponse<IEnumerable<Entity>>(entityEmployees, validFilter.PageNumber, validFilter.PageSize);
+            return new PagedResponse<IEnumerable<Entity>>(data, validFilter.PageNumber, validFilter.PageSize, recordCount);
         }
     }
 }

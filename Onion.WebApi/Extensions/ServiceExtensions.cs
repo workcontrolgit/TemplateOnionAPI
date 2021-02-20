@@ -20,7 +20,7 @@ namespace $safeprojectname$.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Clean Architecture - AngularNgxDataTableBackend.WebApi",
+                    Title = "Clean Architecture - $safeprojectname$",
                     Description = "This Api will be responsible for overall data distribution and authorization.",
                     Contact = new OpenApiContact
                     {

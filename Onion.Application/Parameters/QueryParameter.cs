@@ -1,4 +1,4 @@
-﻿namespace $safeprojectname$.Filters
+﻿namespace $safeprojectname$.Parameters
 {
     public class QueryParameter : PagingParameter
     {
