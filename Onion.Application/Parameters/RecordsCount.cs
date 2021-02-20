@@ -1,4 +1,4 @@
-﻿namespace AngularNgxDataTableBackend.Application.Parameters
+﻿namespace $safeprojectname$.Parameters
 {
     public class RecordsCount
     {

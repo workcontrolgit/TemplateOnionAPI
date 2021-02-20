@@ -1,6 +1,6 @@
 ﻿using $safeprojectname$.Parameters;
 
-namespace $safeprojectname$.Wrappersc
+namespace $safeprojectname$.Wrappers
 {
     public class PagedResponse<T> : Response<T>
     {
