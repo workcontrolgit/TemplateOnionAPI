@@ -1,4 +1,4 @@
-﻿namespace $safeprojectname$.Filters
+﻿namespace $safeprojectname$.Parameters
 {
     public class PagingParameter
     {
@@ -16,15 +16,5 @@
                 _pageSize = (value > maxPageSize) ? maxPageSize : value;
             }
         }
-        public PagingParameter()
-        {
-            //this.PageNumber = 1;
-            //this.PageSize = 10;
-        }
-        //public PagingParameter(int pageNumber, int pageSize)
-        //{
-        //    this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
-        //    this.PageSize = pageSize > maxPageSize ? maxPageSize : pageSize;
-        //}
     }
 }
