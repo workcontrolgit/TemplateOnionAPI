@@ -1,6 +1,7 @@
 ﻿using $ext_projectname$.Application.Features.Employees.Queries.GetEmployees;
 using $ext_projectname$.Application.Interfaces;
 using $ext_projectname$.Application.Interfaces.Repositories;
+using $ext_projectname$.Application.Parameters;
 using $ext_projectname$.Domain.Entities;
 using $safeprojectname$.Contexts;
 using $safeprojectname$.Repository;
@@ -19,6 +20,7 @@ namespace $safeprojectname$.Repositories
         private readonly DbSet<Employee> _employee;
         private IDataShapeHelper<Employee> _dataShaper;
         private readonly IMockService _mockData;
+
         public EmployeeRepositoryAsync(ApplicationDbContext dbContext,
             IDataShapeHelper<Employee> dataShaper,
             IMockService mockData) : base(dbContext)
@@ -29,49 +31,69 @@ namespace $safeprojectname$.Repositories
             _mockData = mockData;
         }
 
-        public async Task<IEnumerable<Entity>> GetPagedEmployeeReponseAsync(GetEmployeesQuery requestParameter)
+        public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedEmployeeReponseAsync(GetEmployeesQuery requestParameter)
         {
-
             IQueryable<Employee> result;
 
             var employeeNumber = requestParameter.EmployeeNumber;
             var employeeTitle = requestParameter.EmployeeTitle;
-            var orderBy = requestParameter.OrderBy;
-            var fields = requestParameter.Fields;
+
             var pageNumber = requestParameter.PageNumber;
             var pageSize = requestParameter.PageSize;
+            var orderBy = requestParameter.OrderBy;
+            var fields = requestParameter.Fields;
 
-            // setup IQueryAble
-            result = _mockData.GetEmployees(1000)
+            int recordsTotal, recordsFiltered;
+
+            int seedCount = 1000;
+
+            result = _mockData.GetEmployees(seedCount)
                 .AsQueryable();
 
-            // filter
+            // Count records total
+            recordsTotal = result.Count();
+
+            // filter data
             FilterByColumn(ref result, employeeNumber, employeeTitle);
-            // order by
+
+            // Count records after filter
+            recordsFiltered = result.Count();
+
+            //set Record counts
+            var recordsCount = new RecordsCount
+            {
+                RecordsFiltered = recordsFiltered,
+                RecordsTotal = recordsTotal
+            };
+
+            // set order by
             if (!string.IsNullOrWhiteSpace(orderBy))
             {
                 result = result.OrderBy(orderBy);
             }
-            // page
-            result = result
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize);
 
-            // select columns
+            //limit query fields
             if (!string.IsNullOrWhiteSpace(fields))
             {
                 result = result.Select<Employee>("new(" + fields + ")");
             }
-            // ToList
+            // paging
+            result = result
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            // retrieve data to list
             // var resultData = await result.ToListAsync();
             // Note: Bogus library does not support await for AsQueryable.
             // Workaround:  fake await with Task.Run and use regular ToList
             var resultData = await Task.Run(() => result.ToList());
 
             // shape data
-            return _dataShaper.ShapeData(resultData, fields);
+            var shapeData = _dataShaper.ShapeData(resultData, fields);
 
+            return (shapeData, recordsCount);
         }
+
         private void FilterByColumn(ref IQueryable<Employee> positions, string employeeNumber, string employeeTitle)
         {
             if (!positions.Any())

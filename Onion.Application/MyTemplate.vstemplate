@@ -87,6 +87,7 @@
       <Folder Name="Parameters" TargetFolderName="Parameters">
         <ProjectItem ReplaceParameters="true" TargetFileName="PagingParameter.cs">PagingParameter.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="QueryParameter.cs">QueryParameter.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="RecordsCount.cs">RecordsCount.cs</ProjectItem>
       </Folder>
       <Folder Name="Wrappers" TargetFolderName="Wrappers">
         <ProjectItem ReplaceParameters="true" TargetFileName="PagedResponse.cs">PagedResponse.cs</ProjectItem>
