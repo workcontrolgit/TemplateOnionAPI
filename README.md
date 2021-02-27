@@ -18,3 +18,9 @@ The underline tech stack provides loosely-coupled and inverted-dependency archit
 5. Swashbuckle — the industry standard for REST API documentation and testing
 6. Bogus — a realistic, easy to use mock data .NET library for rapid REST API design and testing
 
+# How to intall the template
+Copy the OnionAPITemplate.zip to the directory of the Visual Studio templates for C#.  
+
+For Visual Studio 2019, the folder is at 
+
+C:\Users\[UserName]\Documents\Visual Studio 2019\Templates\ProjectTemplates\Visual C#
