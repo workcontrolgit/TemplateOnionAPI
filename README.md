@@ -21,7 +21,7 @@ The underline tech stack provides loosely-coupled and inverted-dependency archit
 # How to intall the template
 Copy the TemplateOnionAPI.zip (in the root of the repo) to the directory of the Visual Studio templates for C# on your desktop.
 
-For Visual Studio 2019, the tempalte folder is at 
+For Visual Studio 2019, the template folder is at 
 
 C:\Users\[UserName]\Documents\Visual Studio 2019\Templates\ProjectTemplates\Visual C#
 
