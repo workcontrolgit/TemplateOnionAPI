@@ -19,8 +19,10 @@ The underline tech stack provides loosely-coupled and inverted-dependency archit
 6. Bogus — a realistic, easy to use mock data .NET library for rapid REST API design and testing
 
 # How to intall the template
-Copy the OnionAPITemplate.zip to the directory of the Visual Studio templates for C#.  
+Copy the TemplateOnionAPI.zip (in the root of the repo) to the directory of the Visual Studio templates for C# on your desktop.
 
-For Visual Studio 2019, the folder is at 
+For Visual Studio 2019, the tempalte folder is at 
 
 C:\Users\[UserName]\Documents\Visual Studio 2019\Templates\ProjectTemplates\Visual C#
+
+
