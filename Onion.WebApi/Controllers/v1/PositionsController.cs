@@ -4,6 +4,7 @@ using $ext_projectname$.Application.Features.Positions.Commands.UpdatePosition;
 using $ext_projectname$.Application.Features.Positions.Queries.GetPositions;
 using $ext_projectname$.Application.Features.Positions.Queries.GetPositionById;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
