@@ -4,6 +4,7 @@ using $ext_projectname$.Application.Features.Positions.Commands.UpdatePosition;
 using $ext_projectname$.Application.Features.Positions.Queries.GetPositions;
 using $ext_projectname$.Application.Features.Positions.Queries.GetPositionById;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace $safeprojectname$.Controllers.v1
     public class PositionsController : BaseApiController
     {
         /// <summary>
-        /// GET: api/controller
+        /// GET: api/controller, , CRUD > Get by query parameters
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
@@ -27,7 +28,7 @@ namespace $safeprojectname$.Controllers.v1
         }
 
         /// <summary>
-        /// GET api/controller/5
+        /// GET api/controller, CRUD > Get by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -38,19 +39,23 @@ namespace $safeprojectname$.Controllers.v1
         }
 
         /// <summary>
-        /// POST api/controller
+        /// POST api/controller, CRUD > Create
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // [Authorize]
+
         public async Task<IActionResult> Post(CreatePositionCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            var resp = await Mediator.Send(command);
+            return CreatedAtAction(nameof(Post), resp);
         }
 
         /// <summary>
-        /// Bulk insert fake data by specifying number of rows
+        /// Custom - Bulk insert fake data by specifying number of rows
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
@@ -64,7 +69,7 @@ namespace $safeprojectname$.Controllers.v1
 
 
         /// <summary>
-        /// PUT api/controller/5
+        /// PUT api/controller, CRUD > Update
         /// </summary>
         /// <param name="id"></param>
         /// <param name="command"></param>
@@ -81,7 +86,7 @@ namespace $safeprojectname$.Controllers.v1
         }
 
         /// <summary>
-        /// DELETE api/controller/5
+        /// DELETE api/controller; CRUD > Delete
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
