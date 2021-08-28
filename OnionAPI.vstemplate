@@ -17,23 +17,23 @@
     <ProjectCollection>
       <SolutionFolder Name="Presentation">
         <ProjectTemplateLink ProjectName="$projectname$.WebApi" CopyParameters="true">
-          Onion.WebApi\MyTemplate.vstemplate
+          Apiresources.WebApi\MyTemplate.vstemplate
         </ProjectTemplateLink>
       </SolutionFolder>
       <SolutionFolder Name="Core">
         <ProjectTemplateLink ProjectName="$projectname$.Application" CopyParameters="true">
-          Onion.Application\MyTemplate.vstemplate
+          Apiresources.Application\MyTemplate.vstemplate
         </ProjectTemplateLink>
         <ProjectTemplateLink ProjectName="$projectname$.Domain" CopyParameters="true">
-          Onion.Domain\MyTemplate.vstemplate
+          Apiresources.Domain\MyTemplate.vstemplate
         </ProjectTemplateLink>
       </SolutionFolder>
       <SolutionFolder Name="Infrastructure">
         <ProjectTemplateLink ProjectName="$projectname$.Infrastructure.Persistence" CopyParameters="true">
-          Onion.Infrastructure.Persistence\MyTemplate.vstemplate
+          Apiresources.Infrastructure.Persistence\MyTemplate.vstemplate
         </ProjectTemplateLink>
         <ProjectTemplateLink ProjectName="$projectname$.Infrastructure.Shared" CopyParameters="true">
-          Onion.Infrastructure.Shared\MyTemplate.vstemplate
+          Apiresources.Infrastructure.Shared\MyTemplate.vstemplate
         </ProjectTemplateLink>
       </SolutionFolder>
     </ProjectCollection>

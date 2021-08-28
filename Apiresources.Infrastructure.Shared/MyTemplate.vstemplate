@@ -1,0 +1,32 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Apiresources.Infrastructure.Shared</Name>
+    <Description>for common services such as Mail Service, Date Time Service, Mock, and so on</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Apiresources.Infrastructure.Shared</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="Apiresources.Infrastructure.Shared.csproj" File="Apiresources.Infrastructure.Shared.csproj" ReplaceParameters="true">
+      <Folder Name="Mock" TargetFolderName="Mock">
+        <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeBogusConfig.cs">EmployeeBogusConfig.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="PositionInsertBogusConfig.cs">PositionInsertBogusConfig.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="PositionSeedBogusConfig.cs">PositionSeedBogusConfig.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Services" TargetFolderName="Services">
+        <ProjectItem ReplaceParameters="true" TargetFileName="DateTimeService.cs">DateTimeService.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="EmailService.cs">EmailService.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MockService.cs">MockService.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ServiceRegistration.cs">ServiceRegistration.cs</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
