@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>$safeprojectname$</name>
+    </assembly>
+    <members>
+        <member name="M:$safeprojectname$.Controllers.v1.EmployeesController.Get(Apiresources.Application.Features.Employees.Queries.GetEmployees.GetEmployeesQuery)">
+            <summary>
+            GET: api/controller
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:$safeprojectname$.Controllers.v1.PositionsController.Get(Apiresources.Application.Features.Positions.Queries.GetPositions.GetPositionsQuery)">
+            <summary>
+            GET: api/controller
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:$safeprojectname$.Controllers.v1.PositionsController.Get(System.Guid)">
+            <summary>
+            GET api/controller/5
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:$safeprojectname$.Controllers.v1.PositionsController.Post(Apiresources.Application.Features.Positions.Commands.CreatePosition.CreatePositionCommand)">
+            <summary>
+            POST api/controller
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:$safeprojectname$.Controllers.v1.PositionsController.AddMock(Apiresources.Application.Features.Positions.Commands.CreatePosition.InsertMockPositionCommand)">
+            <summary>
+            Bulk insert fake data by specifying number of rows
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:$safeprojectname$.Controllers.v1.PositionsController.Paged(Apiresources.Application.Features.Positions.Queries.GetPositions.PagedPositionsQuery)">
+            <summary>
+            Support Ngx-DataTables https://medium.com/scrum-and-coke/angular-11-pagination-of-zillion-rows-45d8533538c0
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:$safeprojectname$.Controllers.v1.PositionsController.Put(System.Guid,Apiresources.Application.Features.Positions.Commands.UpdatePosition.UpdatePositionCommand)">
+            <summary>
+            PUT api/controller/5
+            </summary>
+            <param name="id"></param>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:$safeprojectname$.Controllers.v1.PositionsController.Delete(System.Guid)">
+            <summary>
+            DELETE api/controller/5
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
