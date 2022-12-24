@@ -1,5 +1,5 @@
-﻿using $safeprojectname$.Interfaces.Repositories;
-using FluentValidation;
+﻿using FluentValidation;
+using $safeprojectname$.Interfaces.Repositories;
 using System.Threading;
 using System.Threading.Tasks;
 
