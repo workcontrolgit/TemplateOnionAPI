@@ -9,6 +9,7 @@ namespace $safeprojectname$.Entities
         public string PositionDescription { get; set; }
         public string PostionArea { get; set; }
         public string PostionType { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
         public decimal PositionSalary { get; set; }
     }
 }
