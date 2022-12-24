@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Serilog;
 
 namespace $safeprojectname$
@@ -44,7 +43,7 @@ namespace $safeprojectname$
             services.AddVersionedApiExplorerExtension();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext dbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -60,7 +59,6 @@ namespace $safeprojectname$
 
             // Add this line; you'll need `using Serilog;` up the top, too
             app.UseSerilogRequestLogging();
-            loggerFactory.AddSerilog();
             app.UseHttpsRedirection();
             app.UseRouting();
             //Enable CORS
