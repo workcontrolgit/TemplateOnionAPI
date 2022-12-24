@@ -22,7 +22,6 @@ namespace $safeprojectname$.Extensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.IncludeXmlComments(XmlCommentsFilePath);
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
@@ -144,16 +143,6 @@ namespace $safeprojectname$.Extensions
                                 (c.Type == JwtClaimTypes.Role || c.Type == $"client_{JwtClaimTypes.Role}") &&
                                 System.Array.Exists(c.Value.Split(','), e => e == role)
                             );
-        }
-
-        static string XmlCommentsFilePath
-        {
-            get
-            {
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
-                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
-                return Path.Combine(basePath, fileName);
-            }
         }
 
     }
