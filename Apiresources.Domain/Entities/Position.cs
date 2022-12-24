@@ -1,4 +1,5 @@
 ﻿using $safeprojectname$.Common;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace $safeprojectname$.Entities
 {
