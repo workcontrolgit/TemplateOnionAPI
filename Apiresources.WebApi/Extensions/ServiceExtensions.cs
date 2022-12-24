@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -124,14 +123,14 @@ namespace $safeprojectname$.Extensions
         }
         public static void AddAuthorizationPolicies(this IServiceCollection services, IConfiguration configuration)
         {
-            string hradmin = configuration["ApiRoles:HRAdminRole"],
+            string admin = configuration["ApiRoles:AdminRole"],
                     manager = configuration["ApiRoles:ManagerRole"], employee = configuration["ApiRoles:EmployeeRole"];
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(AuthorizationConsts.HrAdminPolicy, policy => policy.RequireAssertion(context => HasRole(context.User, hradmin)));
-                options.AddPolicy(AuthorizationConsts.ManagerPolicy, policy => policy.RequireAssertion(context => HasRole(context.User, manager) || HasRole(context.User, hradmin)));
-                options.AddPolicy(AuthorizationConsts.EmployeePolicy, policy => policy.RequireAssertion(context => HasRole(context.User, employee) || HasRole(context.User, manager) || HasRole(context.User, hradmin)));
+                options.AddPolicy(AuthorizationConsts.AdminPolicy, policy => policy.RequireAssertion(context => HasRole(context.User, admin)));
+                options.AddPolicy(AuthorizationConsts.ManagerPolicy, policy => policy.RequireAssertion(context => HasRole(context.User, manager) || HasRole(context.User, admin)));
+                options.AddPolicy(AuthorizationConsts.EmployeePolicy, policy => policy.RequireAssertion(context => HasRole(context.User, employee) || HasRole(context.User, manager) || HasRole(context.User, admin)));
             });
         }
         public static bool HasRole(ClaimsPrincipal user, string role)
