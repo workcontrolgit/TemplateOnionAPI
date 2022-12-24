@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,11 +13,19 @@ namespace $safeprojectname$
     {
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
+
             try
             {
+                var builder = WebApplication.CreateBuilder(args);
+                // load up serilog configuraton
+                Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .Enrich.FromLogContext()
+                .CreateLogger();
+
                 Log.Information("Application Starting");
-                host.Run();
+
+                CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
             {

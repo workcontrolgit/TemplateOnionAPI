@@ -1,8 +1,8 @@
-﻿using $safeprojectname$.Interfaces.Repositories;
+﻿using AutoMapper;
+using MediatR;
+using $safeprojectname$.Interfaces.Repositories;
 using $safeprojectname$.Wrappers;
 using $ext_projectname$.Domain.Entities;
-using AutoMapper;
-using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

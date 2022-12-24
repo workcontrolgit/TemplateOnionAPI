@@ -1,6 +1,6 @@
-﻿using $safeprojectname$.Interfaces.Repositories;
+﻿using MediatR;
+using $safeprojectname$.Interfaces.Repositories;
 using $safeprojectname$.Wrappers;
-using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -5,6 +5,7 @@ using $ext_projectname$.Application.Features.Positions.Queries.GetPositionById;
 using $ext_projectname$.Application.Features.Positions.Queries.GetPositions;
 using $safeprojectname$.Extensions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -45,9 +46,12 @@ namespace $safeprojectname$.Controllers.v1
         /// <returns></returns>
         [HttpPost]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]        
         public async Task<IActionResult> Post(CreatePositionCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            var resp = await Mediator.Send(command);
+            return CreatedAtAction(nameof(Post), resp);
         }
 
         /// <summary>

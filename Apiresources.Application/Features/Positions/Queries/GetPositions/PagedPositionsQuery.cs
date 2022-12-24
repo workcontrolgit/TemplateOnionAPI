@@ -1,10 +1,10 @@
-﻿using $safeprojectname$.Interfaces;
+﻿using AutoMapper;
+using MediatR;
+using $safeprojectname$.Interfaces;
 using $safeprojectname$.Interfaces.Repositories;
 using $safeprojectname$.Parameters;
 using $safeprojectname$.Wrappers;
 using $ext_projectname$.Domain.Entities;
-using AutoMapper;
-using MediatR;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
