@@ -11,7 +11,7 @@ Developers can use the Visual Studio template OnionAPI to scaffold a clean archi
 
 The underline tech stack provides loosely-coupled and inverted-dependency architecture with good design patterns and practices.
 
-1. ASP.NET CORE 6 — a framework for creating RESTful services, also known as web APIs, using C#
+1. ASP.NET CORE 7 — a framework for creating RESTful services, also known as web APIs, using C#
 2. Repository Pattern — abstraction layer between the data access layer and the controller
 3. CQRS (Command and Query Responsibility Segregation) Pattern — separating read and update operations for a data store to maximize performance, scalability, and security based on MediatR and AutoMapper
 4. Entity Framework Core — a lightweight, extensible, open-source, and cross-platform version of the popular Entity Framework data access technology
