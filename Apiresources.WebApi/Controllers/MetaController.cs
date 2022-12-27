@@ -8,7 +8,7 @@ namespace $safeprojectname$.Controllers
         [HttpGet("/info")]
         public ActionResult<string> Info()
         {
-            var assembly = typeof(Startup).Assembly;
+            var assembly = typeof(Program).Assembly;
 
             var lastUpdate = System.IO.File.GetLastWriteTime(assembly.Location);
             var version = FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion;
