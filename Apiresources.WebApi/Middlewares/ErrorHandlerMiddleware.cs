@@ -12,10 +12,12 @@ namespace $safeprojectname$.Middlewares
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<ErrorHandlerMiddleware> _logger;
 
-        public ErrorHandlerMiddleware(RequestDelegate next)
+        public ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context)
@@ -32,7 +34,7 @@ namespace $safeprojectname$.Middlewares
 
                 switch (error)
                 {
-                    case Application.Exceptions.ApiException e:
+                    case ApiException:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
@@ -43,7 +45,7 @@ namespace $safeprojectname$.Middlewares
                         responseModel.Errors = e.Errors;
                         break;
 
-                    case KeyNotFoundException e:
+                    case KeyNotFoundException:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
@@ -53,10 +55,14 @@ namespace $safeprojectname$.Middlewares
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
                 }
+                // use ILogger to log the exception message
+                _logger.LogError(error.Message);
+
                 var result = JsonSerializer.Serialize(responseModel);
 
                 await response.WriteAsync(result);
             }
         }
     }
+
 }
