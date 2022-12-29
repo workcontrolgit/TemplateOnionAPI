@@ -1,5 +1,5 @@
 # TemplateOnionAPI
-Blog - [CRUD, Filter, Sort, Page, and Shape Data in Asp.Net Core REST API with OnionAPI Template](https://medium.com/scrum-and-coke/rapid-prototype-asp-net-core-rest-api-using-onionapi-template-b10eea295655)
+Blog - [Get started with the Visual Studio template OnionAPI to scaffold ASP.NET WebAPI project for .NET 7](https://medium.com/scrum-and-coke/get-started-with-the-visual-studio-template-onionapi-to-scaffold-asp-net-webapi-project-for-net-7-558a661cff5)
 
 Developers can use the Visual Studio template OnionAPI to scaffold a clean architecture REST API solution consisting of five projects
 
