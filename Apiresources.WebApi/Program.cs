@@ -70,16 +70,6 @@ try
     app.MapControllers();
     app.Run();
 
-<<<<<<< HEAD
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-            .UseSerilog((ctx, cfg) => cfg.ReadFrom.Configuration(ctx.Configuration)) //Uses Serilog instead of default .NET Logger
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-    }
-=======
     Log.Information("Application Starting");
 
 }
@@ -90,5 +80,4 @@ catch (Exception ex)
 finally
 {
     Log.CloseAndFlush();
->>>>>>> release/7.1.0
 }
