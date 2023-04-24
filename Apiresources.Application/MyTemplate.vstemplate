@@ -37,6 +37,7 @@
             <Folder Name="GetEmployees" TargetFolderName="GetEmployees">
               <ProjectItem ReplaceParameters="true" TargetFileName="GetEmployeesQuery.cs">GetEmployeesQuery.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="GetEmployeesViewModel.cs">GetEmployeesViewModel.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="PagedEmployeesQuery.cs">PagedEmployeesQuery.cs</ProjectItem>
             </Folder>
           </Folder>
         </Folder>

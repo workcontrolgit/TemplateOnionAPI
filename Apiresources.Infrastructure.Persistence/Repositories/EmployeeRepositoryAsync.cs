@@ -31,7 +31,7 @@ namespace $safeprojectname$.Repositories
             _mockData = mockData;
         }
 
-        public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedEmployeeReponseAsync(GetEmployeesQuery requestParameter)
+        public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedEmployeeResponseAsync(GetEmployeesQuery requestParameter)
         {
             IQueryable<Employee> result;
 
