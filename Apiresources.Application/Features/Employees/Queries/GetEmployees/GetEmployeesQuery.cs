@@ -20,8 +20,11 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
     {
         //examples:
         public string EmployeeNumber { get; set; }
-
         public string EmployeeTitle { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string Email { get; set; }
+
     }
 
     public class GetAllEmployeesQueryHandler : IRequestHandler<GetEmployeesQuery, PagedResponse<IEnumerable<Entity>>>
@@ -30,6 +33,17 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
         private readonly IMapper _mapper;
         private readonly IModelHelper _modelHelper;
 
+
+
+        /// <summary>
+        /// Constructor for GetAllEmployeesQueryHandler class.
+        /// </summary>
+        /// <param name="employeeRepository">IEmployeeRepositoryAsync object.</param>
+        /// <param name="mapper">IMapper object.</param>
+        /// <param name="modelHelper">IModelHelper object.</param>
+        /// <returns>
+        /// GetAllEmployeesQueryHandler object.
+        /// </returns>
         public GetAllEmployeesQueryHandler(IEmployeeRepositoryAsync employeeRepository, IMapper mapper, IModelHelper modelHelper)
         {
             _employeeRepository = employeeRepository;
@@ -37,6 +51,14 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
             _modelHelper = modelHelper;
         }
 
+
+
+        /// <summary>
+        /// Handles the GetEmployeesQuery request and returns a PagedResponse containing the requested data.
+        /// </summary>
+        /// <param name="request">The GetEmployeesQuery request.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A PagedResponse containing the requested data.</returns>
         public async Task<PagedResponse<IEnumerable<Entity>>> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
         {
             var validFilter = request;
@@ -52,7 +74,7 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
                 validFilter.Fields = _modelHelper.GetModelFields<GetEmployeesViewModel>();
             }
             // query based on filter
-            var entityEmployees = await _employeeRepository.GetPagedEmployeeReponseAsync(validFilter);
+            var entityEmployees = await _employeeRepository.GetPagedEmployeeResponseAsync(validFilter);
             var data = entityEmployees.data;
             RecordsCount recordCount = entityEmployees.recordsCount;
 
