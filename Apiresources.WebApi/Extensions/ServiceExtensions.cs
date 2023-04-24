@@ -1,14 +1,11 @@
 ﻿using IdentityModel;
-using IdentityServer4.AccessTokenValidation;
-using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using System.Security.Claims;
 using System.Text.Json;
 
@@ -24,7 +21,7 @@ namespace $safeprojectname$.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Clean Architecture - $ext_projectname$",
+                    Title = "Clean Architecture - TalentManagementAPI",
                     Description = "This Api will be responsible for overall data distribution and authorization.",
                     Contact = new OpenApiContact
                     {
@@ -113,13 +110,12 @@ namespace $safeprojectname$.Extensions
         }
         public static void AddJWTAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-            .AddIdentityServerAuthentication(options =>
-            {
-                options.Authority = configuration["Sts:ServerUrl"];
-                options.RequireHttpsMetadata = false;
-            });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.Authority = configuration["Sts:ServerUrl"];
+                });
         }
         public static void AddAuthorizationPolicies(this IServiceCollection services, IConfiguration configuration)
         {
