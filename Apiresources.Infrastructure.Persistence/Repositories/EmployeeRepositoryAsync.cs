@@ -16,32 +16,48 @@ namespace $safeprojectname$.Repositories
 {
     public class EmployeeRepositoryAsync : GenericRepositoryAsync<Employee>, IEmployeeRepositoryAsync
     {
-        private readonly ApplicationDbContext _dbContext;
-        private readonly DbSet<Employee> _employee;
-        private IDataShapeHelper<Employee> _dataShaper;
+        private readonly IDataShapeHelper<Employee> _dataShaper;
         private readonly IMockService _mockData;
 
+
+
+        /// <summary>
+        /// Constructor for EmployeeRepositoryAsync class.
+        /// </summary>
+        /// <param name="dbContext">ApplicationDbContext object.</param>
+        /// <param name="dataShaper">IDataShapeHelper object.</param>
+        /// <param name="mockData">IMockService object.</param>
+        /// <returns>
+        /// 
+        /// </returns>
         public EmployeeRepositoryAsync(ApplicationDbContext dbContext,
             IDataShapeHelper<Employee> dataShaper,
             IMockService mockData) : base(dbContext)
         {
-            _dbContext = dbContext;
-            _employee = dbContext.Set<Employee>();
             _dataShaper = dataShaper;
             _mockData = mockData;
         }
 
-        public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedEmployeeResponseAsync(GetEmployeesQuery requestParameter)
+
+
+        /// <summary>
+        /// Retrieves a paged list of employees based on the provided query parameters.
+        /// </summary>
+        /// <param name="requestParameters">The query parameters used to filter and page the data.</param>
+        /// <returns>A tuple containing the paged list of employees and the total number of records.</returns>
+        public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedEmployeeResponseAsync(GetEmployeesQuery requestParameters)
         {
             IQueryable<Employee> result;
 
-            var employeeNumber = requestParameter.EmployeeNumber;
-            var employeeTitle = requestParameter.EmployeeTitle;
+            var employeeTitle = requestParameters.EmployeeTitle;
+            var lastName = requestParameters.LastName;
+            var firstName = requestParameters.FirstName;
+            var email = requestParameters.Email;
 
-            var pageNumber = requestParameter.PageNumber;
-            var pageSize = requestParameter.PageSize;
-            var orderBy = requestParameter.OrderBy;
-            var fields = requestParameter.Fields;
+            var pageNumber = requestParameters.PageNumber;
+            var pageSize = requestParameters.PageSize;
+            var orderBy = requestParameters.OrderBy;
+            var fields = requestParameters.Fields;
 
             int recordsTotal, recordsFiltered;
 
@@ -54,7 +70,7 @@ namespace $safeprojectname$.Repositories
             recordsTotal = result.Count();
 
             // filter data
-            FilterByColumn(ref result, employeeNumber, employeeTitle);
+            FilterByColumn(ref result, employeeTitle, lastName, firstName, email);
 
             // Count records after filter
             recordsFiltered = result.Count();
@@ -82,6 +98,7 @@ namespace $safeprojectname$.Repositories
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize);
 
+
             // retrieve data to list
             // var resultData = await result.ToListAsync();
             // Note: Bogus library does not support await for AsQueryable.
@@ -94,23 +111,40 @@ namespace $safeprojectname$.Repositories
             return (shapeData, recordsCount);
         }
 
-        private void FilterByColumn(ref IQueryable<Employee> positions, string employeeNumber, string employeeTitle)
+
+
+        /// <summary>
+        /// Filters an IQueryable of employees based on the provided parameters.
+        /// </summary>
+        /// <param name="employees">The IQueryable of employees to filter.</param>
+        /// <param name="employeeTitle">The employee title to filter by.</param>
+        /// <param name="lastName">The last name to filter by.</param>
+        /// <param name="firstName">The first name to filter by.</param>
+        /// <param name="email">The email to filter by.</param>
+        private void FilterByColumn(ref IQueryable<Employee> employees, string employeeTitle, string lastName, string firstName, string email)
         {
-            if (!positions.Any())
+            if (!employees.Any())
                 return;
 
-            if (string.IsNullOrEmpty(employeeTitle) && string.IsNullOrEmpty(employeeNumber))
+            if (string.IsNullOrEmpty(employeeTitle) && string.IsNullOrEmpty(lastName) && string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(email))
                 return;
 
             var predicate = PredicateBuilder.New<Employee>();
 
-            if (!string.IsNullOrEmpty(employeeNumber))
-                predicate = predicate.And(p => p.EmployeeNumber.Contains(employeeNumber.Trim()));
-
             if (!string.IsNullOrEmpty(employeeTitle))
-                predicate = predicate.And(p => p.EmployeeTitle.Contains(employeeTitle.Trim()));
+                predicate = predicate.Or(p => p.EmployeeTitle.ToLower().Contains(employeeTitle.ToLower().Trim()));
 
-            positions = positions.Where(predicate);
+            if (!string.IsNullOrEmpty(lastName))
+                predicate = predicate.Or(p => p.LastName.ToLower().Contains(lastName.ToLower().Trim()));
+
+            if (!string.IsNullOrEmpty(firstName))
+                predicate = predicate.Or(p => p.FirstName.ToLower().Contains(firstName.ToLower().Trim()));
+
+            if (!string.IsNullOrEmpty(email))
+                predicate = predicate.Or(p => p.Email.ToLower().Contains(email.ToLower().Trim()));
+
+
+            employees = employees.Where(predicate);
         }
     }
 }
