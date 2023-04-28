@@ -115,6 +115,7 @@ namespace $safeprojectname$.Extensions
                 {
                     options.RequireHttpsMetadata = false;
                     options.Authority = configuration["Sts:ServerUrl"];
+                    options.Audience = configuration["Sts:Audience"];
                 });
         }
         public static void AddAuthorizationPolicies(this IServiceCollection services, IConfiguration configuration)
