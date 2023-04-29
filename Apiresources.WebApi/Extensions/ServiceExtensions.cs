@@ -125,20 +125,10 @@ namespace $safeprojectname$.Extensions
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(AuthorizationConsts.AdminPolicy, policy => policy.RequireAssertion(context => HasRole(context.User, admin)));
-                options.AddPolicy(AuthorizationConsts.ManagerPolicy, policy => policy.RequireAssertion(context => HasRole(context.User, manager) || HasRole(context.User, admin)));
-                options.AddPolicy(AuthorizationConsts.EmployeePolicy, policy => policy.RequireAssertion(context => HasRole(context.User, employee) || HasRole(context.User, manager) || HasRole(context.User, admin)));
+                options.AddPolicy(AuthorizationConsts.AdminPolicy, policy => policy.RequireRole(admin));
+                options.AddPolicy(AuthorizationConsts.ManagerPolicy, policy => policy.RequireRole(manager, admin));
+                options.AddPolicy(AuthorizationConsts.EmployeePolicy, policy => policy.RequireRole(employee, manager, admin));
             });
-        }
-        public static bool HasRole(ClaimsPrincipal user, string role)
-        {
-            if (string.IsNullOrEmpty(role))
-                return false;
-
-            return user.HasClaim(c =>
-                                (c.Type == JwtClaimTypes.Role || c.Type == $"client_{JwtClaimTypes.Role}") &&
-                                System.Array.Exists(c.Value.Split(','), e => e == role)
-                            );
         }
 
     }
