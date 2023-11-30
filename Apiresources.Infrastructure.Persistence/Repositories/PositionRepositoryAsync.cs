@@ -38,11 +38,10 @@ namespace $safeprojectname$.Repositories
 
         public async Task<bool> SeedDataAsync(int rowCount)
         {
-            foreach (Position position in _mockData.GetPositions(rowCount))
-            {
-                await this.AddAsync(position);
-            }
+            await this.BulkInsertAsync(_mockData.GetPositions(rowCount));
+
             return true;
+
         }
 
         public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedPositionReponseAsync(GetPositionsQuery requestParameter)

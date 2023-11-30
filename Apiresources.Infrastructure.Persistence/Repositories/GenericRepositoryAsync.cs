@@ -1,5 +1,6 @@
 ﻿using $ext_projectname$.Application.Interfaces;
 using $safeprojectname$.Contexts;
+using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -70,5 +71,19 @@ namespace $safeprojectname$.Repository
                  .Set<T>()
                  .ToListAsync();
         }
+
+        public async Task BulkInsertAsync(IEnumerable<T> entities)
+        {
+            // Bulk Insert Extension https://entityframework-extensions.net/bulk-insert
+            await _dbContext.BulkInsertAsync(entities);
+
+            // if DB does not support bulk insert use the code below
+            //foreach (T row in entities)
+            //{
+            //    await this.AddAsync(row);
+            //}
+
+
+        }        
     }
 }

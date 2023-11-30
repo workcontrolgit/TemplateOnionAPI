@@ -19,5 +19,7 @@ namespace $safeprojectname$.Interfaces
         Task UpdateAsync(T entity);
 
         Task DeleteAsync(T entity);
+
+        Task BulkInsertAsync(IEnumerable<T> entities);
     }
 }
