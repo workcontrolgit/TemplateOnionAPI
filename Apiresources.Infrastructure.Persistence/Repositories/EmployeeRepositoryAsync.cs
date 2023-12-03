@@ -46,7 +46,7 @@ namespace $safeprojectname$.Repositories
         /// <returns>A tuple containing the paged list of employees and the total number of records.</returns>
         public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedEmployeeResponseAsync(GetEmployeesQuery requestParameters)
         {
-            IQueryable<Employee> result;
+            IQueryable<Employee> qry;
 
             var employeeTitle = requestParameters.EmployeeTitle;
             var lastName = requestParameters.LastName;
@@ -62,17 +62,17 @@ namespace $safeprojectname$.Repositories
 
             int seedCount = 1000;
 
-            result = _mockData.GetEmployees(seedCount)
+            qry = _mockData.GetEmployees(seedCount)
                 .AsQueryable();
 
             // Count records total
-            recordsTotal = result.Count();
+            recordsTotal = qry.Count();
 
             // filter data
-            FilterByColumn(ref result, employeeTitle, lastName, firstName, email);
+            FilterByColumn(ref qry, employeeTitle, lastName, firstName, email);
 
             // Count records after filter
-            recordsFiltered = result.Count();
+            recordsFiltered = qry.Count();
 
             //set Record counts
             var recordsCount = new RecordsCount
@@ -84,16 +84,16 @@ namespace $safeprojectname$.Repositories
             // set order by
             if (!string.IsNullOrWhiteSpace(orderBy))
             {
-                result = result.OrderBy(orderBy);
+                qry = qry.OrderBy(orderBy);
             }
 
             //limit query fields
             if (!string.IsNullOrWhiteSpace(fields))
             {
-                result = result.Select<Employee>("new(" + fields + ")");
+                qry = qry.Select<Employee>("new(" + fields + ")");
             }
             // paging
-            result = result
+            qry = qry
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize);
 
@@ -102,7 +102,7 @@ namespace $safeprojectname$.Repositories
             // var resultData = await result.ToListAsync();
             // Note: Bogus library does not support await for AsQueryable.
             // Workaround:  fake await with Task.Run and use regular ToList
-            var resultData = await Task.Run(() => result.ToList());
+            var resultData = await Task.Run(() => qry.ToList());
 
             // shape data
             var shapeData = _dataShaper.ShapeData(resultData, fields);
@@ -115,14 +115,14 @@ namespace $safeprojectname$.Repositories
         /// <summary>
         /// Filters an IQueryable of employees based on the provided parameters.
         /// </summary>
-        /// <param name="employees">The IQueryable of employees to filter.</param>
+        /// <param name="qry">The IQueryable of employees to filter.</param>
         /// <param name="employeeTitle">The employee title to filter by.</param>
         /// <param name="lastName">The last name to filter by.</param>
         /// <param name="firstName">The first name to filter by.</param>
         /// <param name="email">The email to filter by.</param>
-        private void FilterByColumn(ref IQueryable<Employee> employees, string employeeTitle, string lastName, string firstName, string email)
+        private void FilterByColumn(ref IQueryable<Employee> qry, string employeeTitle, string lastName, string firstName, string email)
         {
-            if (!employees.Any())
+            if (!qry.Any())
                 return;
 
             if (string.IsNullOrEmpty(employeeTitle) && string.IsNullOrEmpty(lastName) && string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(email))
@@ -143,7 +143,7 @@ namespace $safeprojectname$.Repositories
                 predicate = predicate.Or(p => p.Email.ToLower().Contains(email.ToLower().Trim()));
 
 
-            employees = employees.Where(predicate);
+            qry = qry.Where(predicate);
         }
     }
 }

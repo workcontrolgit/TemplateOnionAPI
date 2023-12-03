@@ -89,7 +89,7 @@ namespace $safeprojectname$.Controllers.v1
         /// <param name="command">The command containing the updated information.</param>
         /// <returns>The updated position.</returns>
         [HttpPut("{id}")]
-        [Authorize(Policy = AuthorizationConsts.AdminPolicy)]
+        [Authorize(Policy = AuthorizationConsts.ManagerPolicy)]
         public async Task<IActionResult> Put(Guid id, UpdatePositionCommand command)
         {
             if (id != command.Id)

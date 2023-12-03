@@ -17,7 +17,7 @@ namespace $safeprojectname$.Repositories
     public class PositionRepositoryAsync : GenericRepositoryAsync<Position>, IPositionRepositoryAsync
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly DbSet<Position> _positions;
+        private readonly DbSet<Position> _repository;
         private IDataShapeHelper<Position> _dataShaper;
         private readonly IMockService _mockData;
 
@@ -25,14 +25,14 @@ namespace $safeprojectname$.Repositories
             IDataShapeHelper<Position> dataShaper, IMockService mockData) : base(dbContext)
         {
             _dbContext = dbContext;
-            _positions = dbContext.Set<Position>();
+            _repository = dbContext.Set<Position>();
             _dataShaper = dataShaper;
             _mockData = mockData;
         }
 
         public async Task<bool> IsUniquePositionNumberAsync(string positionNumber)
         {
-            return await _positions
+            return await _repository
                 .AllAsync(p => p.PositionNumber != positionNumber);
         }
 
@@ -57,7 +57,7 @@ namespace $safeprojectname$.Repositories
             int recordsTotal, recordsFiltered;
 
             // Setup IQueryable
-            var result = _positions
+            var result = _repository
                 .AsNoTracking()
                 .AsExpandable();
 
@@ -101,9 +101,9 @@ namespace $safeprojectname$.Repositories
             return (shapeData, recordsCount);
         }
 
-        private void FilterByColumn(ref IQueryable<Position> positions, string positionNumber, string positionTitle)
+        private void FilterByColumn(ref IQueryable<Position> qry, string positionNumber, string positionTitle)
         {
-            if (!positions.Any())
+            if (!qry.Any())
                 return;
 
             if (string.IsNullOrEmpty(positionTitle) && string.IsNullOrEmpty(positionNumber))
@@ -117,7 +117,7 @@ namespace $safeprojectname$.Repositories
             if (!string.IsNullOrEmpty(positionTitle))
                 predicate = predicate.Or(p => p.PositionTitle.Contains(positionTitle.Trim()));
 
-            positions = positions.Where(predicate);
+            qry = qry.Where(predicate);
         }
     }
 }
