@@ -24,14 +24,12 @@ namespace $safeprojectname$.Features.Positions.Queries.GetPositions
 
     public class PagePositionQueryHandler : IRequestHandler<PagedPositionsQuery, PagedDataTableResponse<IEnumerable<Entity>>>
     {
-        private readonly IPositionRepositoryAsync _positionRepository;
-        private readonly IMapper _mapper;
+        private readonly IPositionRepositoryAsync _repository;
         private readonly IModelHelper _modelHelper;
 
-        public PagePositionQueryHandler(IPositionRepositoryAsync positionRepository, IMapper mapper, IModelHelper modelHelper)
+        public PagePositionQueryHandler(IPositionRepositoryAsync repository, IMapper mapper, IModelHelper modelHelper)
         {
-            _positionRepository = positionRepository;
-            _mapper = mapper;
+            _repository = repository;
             _modelHelper = modelHelper;
         }
 
@@ -74,9 +72,9 @@ namespace $safeprojectname$.Features.Positions.Queries.GetPositions
                 validFilter.Fields = _modelHelper.GetModelFields<GetPositionsViewModel>();
             }
             // query based on filter
-            var entityPositions = await _positionRepository.GetPagedPositionReponseAsync(validFilter);
-            var data = entityPositions.data;
-            RecordsCount recordCount = entityPositions.recordsCount;
+            var qryResult = await _repository.GetPagedPositionReponseAsync(validFilter);
+            var data = qryResult.data;
+            RecordsCount recordCount = qryResult.recordsCount;
 
             // response wrapper
             return new PagedDataTableResponse<IEnumerable<Entity>>(data, request.Draw, recordCount);
