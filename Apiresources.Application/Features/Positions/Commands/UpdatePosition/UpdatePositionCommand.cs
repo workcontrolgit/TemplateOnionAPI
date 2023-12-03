@@ -17,16 +17,16 @@ namespace $safeprojectname$.Features.Positions.Commands.UpdatePosition
 
         public class UpdatePositionCommandHandler : IRequestHandler<UpdatePositionCommand, Response<Guid>>
         {
-            private readonly IPositionRepositoryAsync _repository;
+            private readonly IPositionRepositoryAsync _positionRepository;
 
-            public UpdatePositionCommandHandler(IPositionRepositoryAsync repository)
+            public UpdatePositionCommandHandler(IPositionRepositoryAsync positionRepository)
             {
-                _repository = repository;
+                _positionRepository = positionRepository;
             }
 
             public async Task<Response<Guid>> Handle(UpdatePositionCommand command, CancellationToken cancellationToken)
             {
-                var position = await _repository.GetByIdAsync(command.Id);
+                var position = await _positionRepository.GetByIdAsync(command.Id);
 
                 if (position == null)
                 {
@@ -37,7 +37,7 @@ namespace $safeprojectname$.Features.Positions.Commands.UpdatePosition
                     position.PositionTitle = command.PositionTitle;
                     position.PositionSalary = command.PositionSalary;
                     position.PositionDescription = command.PositionDescription;
-                    await _repository.UpdateAsync(position);
+                    await _positionRepository.UpdateAsync(position);
                     return new Response<Guid>(position.Id);
                 }
             }
