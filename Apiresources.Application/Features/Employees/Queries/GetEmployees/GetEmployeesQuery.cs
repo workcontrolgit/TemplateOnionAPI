@@ -30,7 +30,6 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
     public class GetAllEmployeesQueryHandler : IRequestHandler<GetEmployeesQuery, PagedResponse<IEnumerable<Entity>>>
     {
         private readonly IEmployeeRepositoryAsync _employeeRepository;
-        private readonly IMapper _mapper;
         private readonly IModelHelper _modelHelper;
 
 
@@ -39,15 +38,13 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
         /// Constructor for GetAllEmployeesQueryHandler class.
         /// </summary>
         /// <param name="employeeRepository">IEmployeeRepositoryAsync object.</param>
-        /// <param name="mapper">IMapper object.</param>
         /// <param name="modelHelper">IModelHelper object.</param>
         /// <returns>
         /// GetAllEmployeesQueryHandler object.
         /// </returns>
-        public GetAllEmployeesQueryHandler(IEmployeeRepositoryAsync employeeRepository, IMapper mapper, IModelHelper modelHelper)
+        public GetAllEmployeesQueryHandler(IEmployeeRepositoryAsync employeeRepository, IModelHelper modelHelper)
         {
             _employeeRepository = employeeRepository;
-            _mapper = mapper;
             _modelHelper = modelHelper;
         }
 
@@ -74,9 +71,9 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
                 validFilter.Fields = _modelHelper.GetModelFields<GetEmployeesViewModel>();
             }
             // query based on filter
-            var entityEmployees = await _employeeRepository.GetPagedEmployeeResponseAsync(validFilter);
-            var data = entityEmployees.data;
-            RecordsCount recordCount = entityEmployees.recordsCount;
+            var qryResult = await _employeeRepository.GetPagedEmployeeResponseAsync(validFilter);
+            var data = qryResult.data;
+            RecordsCount recordCount = qryResult.recordsCount;
 
             // response wrapper
             return new PagedResponse<IEnumerable<Entity>>(data, validFilter.PageNumber, validFilter.PageSize, recordCount);
