@@ -16,15 +16,13 @@ namespace $safeprojectname$.Repositories
 {
     public class PositionRepositoryAsync : GenericRepositoryAsync<Position>, IPositionRepositoryAsync
     {
-        private readonly ApplicationDbContext _dbContext;
         private readonly DbSet<Position> _repository;
-        private IDataShapeHelper<Position> _dataShaper;
+        private readonly IDataShapeHelper<Position> _dataShaper;
         private readonly IMockService _mockData;
 
         public PositionRepositoryAsync(ApplicationDbContext dbContext,
             IDataShapeHelper<Position> dataShaper, IMockService mockData) : base(dbContext)
         {
-            _dbContext = dbContext;
             _repository = dbContext.Set<Position>();
             _dataShaper = dataShaper;
             _mockData = mockData;
@@ -44,15 +42,15 @@ namespace $safeprojectname$.Repositories
 
         }
 
-        public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedPositionReponseAsync(GetPositionsQuery requestParameter)
+        public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedPositionReponseAsync(GetPositionsQuery requestParameters)
         {
-            var positionNumber = requestParameter.PositionNumber;
-            var positionTitle = requestParameter.PositionTitle;
+            var positionNumber = requestParameters.PositionNumber;
+            var positionTitle = requestParameters.PositionTitle;
 
-            var pageNumber = requestParameter.PageNumber;
-            var pageSize = requestParameter.PageSize;
-            var orderBy = requestParameter.OrderBy;
-            var fields = requestParameter.Fields;
+            var pageNumber = requestParameters.PageNumber;
+            var pageSize = requestParameters.PageSize;
+            var orderBy = requestParameters.OrderBy;
+            var fields = requestParameters.Fields;
 
             int recordsTotal, recordsFiltered;
 

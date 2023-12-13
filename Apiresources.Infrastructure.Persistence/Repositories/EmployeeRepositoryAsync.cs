@@ -23,7 +23,6 @@ namespace $safeprojectname$.Repositories
         /// <summary>
         /// Constructor for EmployeeRepositoryAsync class.
         /// </summary>
-        /// <param name="dbContext">ApplicationDbContext object.</param>
         /// <param name="dataShaper">IDataShapeHelper object.</param>
         /// <param name="mockData">IMockService object.</param>
         /// <returns>
