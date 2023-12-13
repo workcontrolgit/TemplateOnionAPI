@@ -13,16 +13,16 @@ namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
 
     public class SeedPositionCommandHandler : IRequestHandler<InsertMockPositionCommand, Response<int>>
     {
-        private readonly IPositionRepositoryAsync _positionRepository;
+        private readonly IPositionRepositoryAsync _repository;
 
-        public SeedPositionCommandHandler(IPositionRepositoryAsync positionRepository)
+        public SeedPositionCommandHandler(IPositionRepositoryAsync repository)
         {
-            _positionRepository = positionRepository;
+            _repository = repository;
         }
 
         public async Task<Response<int>> Handle(InsertMockPositionCommand request, CancellationToken cancellationToken)
         {
-            await _positionRepository.SeedDataAsync(request.RowCount);
+            await _repository.SeedDataAsync(request.RowCount);
             return new Response<int>(request.RowCount);
         }
     }

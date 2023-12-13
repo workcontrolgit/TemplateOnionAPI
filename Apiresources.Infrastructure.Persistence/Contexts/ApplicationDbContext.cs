@@ -3,6 +3,7 @@ using $ext_projectname$.Domain.Common;
 using $ext_projectname$.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,18 +45,42 @@ namespace $safeprojectname$.Contexts
             return base.SaveChangesAsync(cancellationToken);
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Configure the tables
+            modelBuilder.ApplyConfiguration(new PositionConfiguration());
+            // Mock data
             var _mockData = this.Database.GetService<IMockService>();
             var seedPositions = _mockData.SeedPositions(1000);
-            builder.Entity<Position>().HasData(seedPositions);
-
-            base.OnModelCreating(builder);
+            modelBuilder.Entity<Position>().HasData(seedPositions);
+            base.OnModelCreating(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLoggerFactory(_loggerFactory);
+        }
+        internal class PositionConfiguration : IEntityTypeConfiguration<Position>
+        {
+            public void Configure(EntityTypeBuilder<Position> builder)
+            {
+                builder.ToTable("Positions");
+                builder.Property(e => e.Id).ValueGeneratedNever();
+                builder.Property(e => e.PositionDescription)
+                    .IsRequired()
+                    .HasMaxLength(1000);
+                builder.Property(e => e.PositionNumber)
+                    .IsRequired()
+                    .HasMaxLength(100);
+                builder.Property(e => e.PositionSalary).HasColumnType("decimal(18, 2)");
+                builder.Property(e => e.PositionTitle)
+                    .IsRequired()
+                    .HasMaxLength(250);
+                builder.Property(e => e.PostionType).HasMaxLength(100);
+                builder.Property(e => e.PostionArea).HasMaxLength(100);
+                builder.Property(e => e.CreatedBy).HasMaxLength(100);
+                builder.Property(e => e.LastModifiedBy).HasMaxLength(100);
+            }
         }
     }
 }

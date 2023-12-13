@@ -15,18 +15,18 @@ namespace $safeprojectname$.Features.Positions.Queries.GetPositionById
 
         public class GetPositionByIdQueryHandler : IRequestHandler<GetPositionByIdQuery, Response<Position>>
         {
-            private readonly IPositionRepositoryAsync _positionRepository;
+            private readonly IPositionRepositoryAsync _repository;
 
-            public GetPositionByIdQueryHandler(IPositionRepositoryAsync positionRepository)
+            public GetPositionByIdQueryHandler(IPositionRepositoryAsync repository)
             {
-                _positionRepository = positionRepository;
+                _repository = repository;
             }
 
             public async Task<Response<Position>> Handle(GetPositionByIdQuery query, CancellationToken cancellationToken)
             {
-                var position = await _positionRepository.GetByIdAsync(query.Id);
-                if (position == null) throw new ApiException($"Position Not Found.");
-                return new Response<Position>(position);
+                var entity = await _repository.GetByIdAsync(query.Id);
+                if (entity == null) throw new ApiException($"Position Not Found.");
+                return new Response<Position>(entity);
             }
         }
     }

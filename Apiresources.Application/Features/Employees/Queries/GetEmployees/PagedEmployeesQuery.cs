@@ -17,15 +17,14 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
         public int Draw { get; set; } //page number
         public int Start { get; set; } //Paging first record indicator. This is the start point in the current data set (0 index based - i.e. 0 is the first record).
         public int Length { get; set; } //page size
-        public IList<Order> Order { get; set; } //Order by
+        public IList<SortOrder> SortOrder { get; set; } //Order by
         public Search Search { get; set; } //search criteria
         public IList<Column> Columns { get; set; } //select fields
     }
 
     public class PageEmployeeQueryHandler : IRequestHandler<PagedEmployeesQuery, PagedDataTableResponse<IEnumerable<Entity>>>
     {
-        private readonly IEmployeeRepositoryAsync _employeeRepository;
-        private readonly IMapper _mapper;
+        private readonly IEmployeeRepositoryAsync _repository;
         private readonly IModelHelper _modelHelper;
 
 
@@ -33,16 +32,14 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
         /// <summary>
         /// Constructor for PageEmployeeQueryHandler class.
         /// </summary>
-        /// <param name="employeeRepository">IEmployeeRepositoryAsync object.</param>
-        /// <param name="mapper">IMapper object.</param>
+        /// <param name="repository">IEmployeeRepositoryAsync object.</param>
         /// <param name="modelHelper">IModelHelper object.</param>
         /// <returns>
         /// PageEmployeeQueryHandler object.
         /// </returns>
-        public PageEmployeeQueryHandler(IEmployeeRepositoryAsync employeeRepository, IMapper mapper, IModelHelper modelHelper)
+        public PageEmployeeQueryHandler(IEmployeeRepositoryAsync repository, IModelHelper modelHelper)
         {
-            _employeeRepository = employeeRepository;
-            _mapper = mapper;
+            _repository = repository;
             _modelHelper = modelHelper;
         }
 
@@ -64,7 +61,7 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
             validFilter.PageSize = request.Length;
 
             // Map order > OrderBy
-            var colOrder = request.Order[0];
+            var colOrder = request.SortOrder[0];
             switch (colOrder.Column)
             {
                 case 0:
@@ -99,9 +96,9 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
                 validFilter.Fields = _modelHelper.GetModelFields<GetEmployeesViewModel>();
             }
             // query based on filter
-            var entityEmployees = await _employeeRepository.GetPagedEmployeeResponseAsync(validFilter);
-            var data = entityEmployees.data;
-            RecordsCount recordCount = entityEmployees.recordsCount;
+            var qryResult = await _repository.GetPagedEmployeeResponseAsync(validFilter);
+            var data = qryResult.data;
+            RecordsCount recordCount = qryResult.recordsCount;
 
             // response wrapper
             return new PagedDataTableResponse<IEnumerable<Entity>>(data, request.Draw, recordCount);
