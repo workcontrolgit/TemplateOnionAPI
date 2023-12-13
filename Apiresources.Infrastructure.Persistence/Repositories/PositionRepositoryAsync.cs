@@ -16,49 +16,46 @@ namespace $safeprojectname$.Repositories
 {
     public class PositionRepositoryAsync : GenericRepositoryAsync<Position>, IPositionRepositoryAsync
     {
-        private readonly ApplicationDbContext _dbContext;
-        private readonly DbSet<Position> _positions;
-        private IDataShapeHelper<Position> _dataShaper;
+        private readonly DbSet<Position> _repository;
+        private readonly IDataShapeHelper<Position> _dataShaper;
         private readonly IMockService _mockData;
 
         public PositionRepositoryAsync(ApplicationDbContext dbContext,
             IDataShapeHelper<Position> dataShaper, IMockService mockData) : base(dbContext)
         {
-            _dbContext = dbContext;
-            _positions = dbContext.Set<Position>();
+            _repository = dbContext.Set<Position>();
             _dataShaper = dataShaper;
             _mockData = mockData;
         }
 
         public async Task<bool> IsUniquePositionNumberAsync(string positionNumber)
         {
-            return await _positions
+            return await _repository
                 .AllAsync(p => p.PositionNumber != positionNumber);
         }
 
         public async Task<bool> SeedDataAsync(int rowCount)
         {
-            foreach (Position position in _mockData.GetPositions(rowCount))
-            {
-                await this.AddAsync(position);
-            }
+            await this.BulkInsertAsync(_mockData.GetPositions(rowCount));
+
             return true;
+
         }
 
-        public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedPositionReponseAsync(GetPositionsQuery requestParameter)
+        public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedPositionReponseAsync(GetPositionsQuery requestParameters)
         {
-            var positionNumber = requestParameter.PositionNumber;
-            var positionTitle = requestParameter.PositionTitle;
+            var positionNumber = requestParameters.PositionNumber;
+            var positionTitle = requestParameters.PositionTitle;
 
-            var pageNumber = requestParameter.PageNumber;
-            var pageSize = requestParameter.PageSize;
-            var orderBy = requestParameter.OrderBy;
-            var fields = requestParameter.Fields;
+            var pageNumber = requestParameters.PageNumber;
+            var pageSize = requestParameters.PageSize;
+            var orderBy = requestParameters.OrderBy;
+            var fields = requestParameters.Fields;
 
             int recordsTotal, recordsFiltered;
 
             // Setup IQueryable
-            var result = _positions
+            var result = _repository
                 .AsNoTracking()
                 .AsExpandable();
 
@@ -102,9 +99,9 @@ namespace $safeprojectname$.Repositories
             return (shapeData, recordsCount);
         }
 
-        private void FilterByColumn(ref IQueryable<Position> positions, string positionNumber, string positionTitle)
+        private void FilterByColumn(ref IQueryable<Position> qry, string positionNumber, string positionTitle)
         {
-            if (!positions.Any())
+            if (!qry.Any())
                 return;
 
             if (string.IsNullOrEmpty(positionTitle) && string.IsNullOrEmpty(positionNumber))
@@ -118,7 +115,7 @@ namespace $safeprojectname$.Repositories
             if (!string.IsNullOrEmpty(positionTitle))
                 predicate = predicate.Or(p => p.PositionTitle.Contains(positionTitle.Trim()));
 
-            positions = positions.Where(predicate);
+            qry = qry.Where(predicate);
         }
     }
 }

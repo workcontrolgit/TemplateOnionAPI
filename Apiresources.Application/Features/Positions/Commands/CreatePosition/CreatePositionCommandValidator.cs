@@ -7,11 +7,11 @@ namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
 {
     public class CreatePositionCommandValidator : AbstractValidator<CreatePositionCommand>
     {
-        private readonly IPositionRepositoryAsync positionRepository;
+        private readonly IPositionRepositoryAsync _repository;
 
-        public CreatePositionCommandValidator(IPositionRepositoryAsync positionRepository)
+        public CreatePositionCommandValidator(IPositionRepositoryAsync repository)
         {
-            this.positionRepository = positionRepository;
+            _repository = repository;
 
             RuleFor(p => p.PositionNumber)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
@@ -27,7 +27,7 @@ namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
 
         private async Task<bool> IsUniquePositionNumber(string positionNumber, CancellationToken cancellationToken)
         {
-            return await positionRepository.IsUniquePositionNumberAsync(positionNumber);
+            return await _repository.IsUniquePositionNumberAsync(positionNumber);
         }
     }
 }

@@ -19,19 +19,19 @@ namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
 
     public class CreatePositionCommandHandler : IRequestHandler<CreatePositionCommand, Response<Guid>>
     {
-        private readonly IPositionRepositoryAsync _positionRepository;
+        private readonly IPositionRepositoryAsync _repository;
         private readonly IMapper _mapper;
 
-        public CreatePositionCommandHandler(IPositionRepositoryAsync positionRepository, IMapper mapper)
+        public CreatePositionCommandHandler(IPositionRepositoryAsync repository, IMapper mapper)
         {
-            _positionRepository = positionRepository;
+            _repository = repository;
             _mapper = mapper;
         }
 
         public async Task<Response<Guid>> Handle(CreatePositionCommand request, CancellationToken cancellationToken)
         {
             var position = _mapper.Map<Position>(request);
-            await _positionRepository.AddAsync(position);
+            await _repository.AddAsync(position);
             return new Response<Guid>(position.Id);
         }
     }
