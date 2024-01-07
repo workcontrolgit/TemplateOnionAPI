@@ -49,10 +49,11 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="InsertMockPositionCommand.cs">InsertMockPositionCommand.cs</ProjectItem>
             </Folder>
             <Folder Name="DeletePositionById" TargetFolderName="DeletePositionById">
-              <ProjectItem ReplaceParameters="true" TargetFileName="DeleteProductByIdCommand.cs">DeleteProductByIdCommand.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DeletePositionByIdCommand.cs">DeletePositionByIdCommand.cs</ProjectItem>
             </Folder>
             <Folder Name="UpdatePosition" TargetFolderName="UpdatePosition">
               <ProjectItem ReplaceParameters="true" TargetFileName="UpdatePositionCommand.cs">UpdatePositionCommand.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="UpdatePositionCommandValidator.cs">UpdatePositionCommandValidator.cs</ProjectItem>
             </Folder>
           </Folder>
           <Folder Name="Queries" TargetFolderName="Queries">
