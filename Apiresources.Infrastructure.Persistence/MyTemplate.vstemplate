@@ -18,11 +18,14 @@
     <Project TargetFileName="Apiresources.Infrastructure.Persistence.csproj" File="Apiresources.Infrastructure.Persistence.csproj" ReplaceParameters="true">
       <Folder Name="Contexts" TargetFolderName="Contexts">
         <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationDbContext.cs">ApplicationDbContext.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ApplicationDbContextHelpers.cs">ApplicationDbContextHelpers.cs</ProjectItem>
       </Folder>
       <Folder Name="Repositories" TargetFolderName="Repositories">
+        <ProjectItem ReplaceParameters="true" TargetFileName="DepartmentRepositoryAsync.cs">DepartmentRepositoryAsync.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeRepositoryAsync.cs">EmployeeRepositoryAsync.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="GenericRepositoryAsync.cs">GenericRepositoryAsync.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="PositionRepositoryAsync.cs">PositionRepositoryAsync.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SalaryRangeRepositoryAsync.cs">SalaryRangeRepositoryAsync.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="ServiceRegistration.cs">ServiceRegistration.cs</ProjectItem>
     </Project>

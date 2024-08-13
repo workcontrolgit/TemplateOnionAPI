@@ -1,8 +1,5 @@
 ﻿using $ext_projectname$.Application.Interfaces;
-using $ext_projectname$.Application.Interfaces.Repositories;
 using $safeprojectname$.Contexts;
-using $safeprojectname$.Repositories;
-using $safeprojectname$.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,9 +25,13 @@ namespace $safeprojectname$
 
             #region Repositories
 
-            services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
-            services.AddTransient<IPositionRepositoryAsync, PositionRepositoryAsync>();
-            services.AddTransient<IEmployeeRepositoryAsync, EmployeeRepositoryAsync>();
+            // * use Scutor to register generic repository interface for DI and specifying the lifetime of dependencies
+            services.Scan(selector => selector
+                .FromCallingAssembly()
+                .AddClasses(classSelector => classSelector.AssignableTo(typeof(IGenericRepositoryAsync<>)))
+                .AsImplementedInterfaces()
+                .WithTransientLifetime()
+                );
 
             #endregion Repositories
         }

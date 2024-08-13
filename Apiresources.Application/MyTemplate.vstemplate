@@ -32,6 +32,14 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="ValidationException.cs">ValidationException.cs</ProjectItem>
       </Folder>
       <Folder Name="Features" TargetFolderName="Features">
+        <Folder Name="Departments" TargetFolderName="Departments">
+          <Folder Name="Queries" TargetFolderName="Queries">
+            <Folder Name="GetDepartments" TargetFolderName="GetDepartments">
+              <ProjectItem ReplaceParameters="true" TargetFileName="GetDepartmentsQuery.cs">GetDepartmentsQuery.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="GetDepartmentsViewModel.cs">GetDepartmentsViewModel.cs</ProjectItem>
+            </Folder>
+          </Folder>
+        </Folder>
         <Folder Name="Employees" TargetFolderName="Employees">
           <Folder Name="Queries" TargetFolderName="Queries">
             <Folder Name="GetEmployees" TargetFolderName="GetEmployees">
@@ -67,6 +75,14 @@
             </Folder>
           </Folder>
         </Folder>
+        <Folder Name="SalaryRanges" TargetFolderName="SalaryRanges">
+          <Folder Name="Queries" TargetFolderName="Queries">
+            <Folder Name="GetSalaryRanges" TargetFolderName="GetSalaryRanges">
+              <ProjectItem ReplaceParameters="true" TargetFileName="GetSalaryRangesQuery.cs">GetSalaryRangesQuery.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="GetSalaryRangesViewModel.cs">GetSalaryRangesViewModel.cs</ProjectItem>
+            </Folder>
+          </Folder>
+        </Folder>
       </Folder>
       <Folder Name="Helpers" TargetFolderName="Helpers">
         <ProjectItem ReplaceParameters="true" TargetFileName="DataShapeHelper.cs">DataShapeHelper.cs</ProjectItem>
@@ -89,11 +105,12 @@
       </Folder>
       <Folder Name="Parameters" TargetFolderName="Parameters">
         <ProjectItem ReplaceParameters="true" TargetFileName="Column.cs">Column.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="SortOrder.cs">SortOrder.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="OrderByParameter.cs">OrderByParameter.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="PagingParameter.cs">PagingParameter.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="QueryParameter.cs">QueryParameter.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="RecordsCount.cs">RecordsCount.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Search.cs">Search.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SortOrder.cs">SortOrder.cs</ProjectItem>
       </Folder>
       <Folder Name="Wrappers" TargetFolderName="Wrappers">
         <ProjectItem ReplaceParameters="true" TargetFileName="PagedDataTableResponse.cs">PagedDataTableResponse.cs</ProjectItem>

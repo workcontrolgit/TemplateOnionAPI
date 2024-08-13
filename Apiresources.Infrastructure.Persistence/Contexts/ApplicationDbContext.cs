@@ -3,14 +3,13 @@ using $ext_projectname$.Domain.Common;
 using $ext_projectname$.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace $safeprojectname$.Contexts
 {
-    public class ApplicationDbContext : DbContext
+    public partial class ApplicationDbContext : DbContext
     {
         private readonly IDateTimeService _dateTime;
         private readonly ILoggerFactory _loggerFactory;
@@ -25,7 +24,10 @@ namespace $safeprojectname$.Contexts
             _loggerFactory = loggerFactory;
         }
 
+        public DbSet<Department> Departments { get; set; }
         public DbSet<Position> Positions { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<SalaryRange> SalaryRanges { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -47,40 +49,15 @@ namespace $safeprojectname$.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure the tables
-            modelBuilder.ApplyConfiguration(new PositionConfiguration());
-            // Mock data
-            var _mockData = this.Database.GetService<IMockService>();
-            var seedPositions = _mockData.SeedPositions(1000);
-            modelBuilder.Entity<Position>().HasData(seedPositions);
             base.OnModelCreating(modelBuilder);
+
+            // Configuring data model using EF Core Fluent
+            ApplicationDbContextHelpers.DatabaseModelCreating(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLoggerFactory(_loggerFactory);
-        }
-        internal class PositionConfiguration : IEntityTypeConfiguration<Position>
-        {
-            public void Configure(EntityTypeBuilder<Position> builder)
-            {
-                builder.ToTable("Positions");
-                builder.Property(e => e.Id).ValueGeneratedNever();
-                builder.Property(e => e.PositionDescription)
-                    .IsRequired()
-                    .HasMaxLength(1000);
-                builder.Property(e => e.PositionNumber)
-                    .IsRequired()
-                    .HasMaxLength(100);
-                builder.Property(e => e.PositionSalary).HasColumnType("decimal(18, 2)");
-                builder.Property(e => e.PositionTitle)
-                    .IsRequired()
-                    .HasMaxLength(250);
-                builder.Property(e => e.PostionType).HasMaxLength(100);
-                builder.Property(e => e.PostionArea).HasMaxLength(100);
-                builder.Property(e => e.CreatedBy).HasMaxLength(100);
-                builder.Property(e => e.LastModifiedBy).HasMaxLength(100);
-            }
+            optionsBuilder.UseLoggerFactory(_loggerFactory).EnableSensitiveDataLogging().EnableDetailedErrors();
         }
     }
 }
