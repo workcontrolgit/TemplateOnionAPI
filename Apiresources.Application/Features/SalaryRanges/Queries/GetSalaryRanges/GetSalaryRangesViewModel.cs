@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace $safeprojectname$.Application.Features.SalaryRanges.Queries.GetSalaryRanges
+namespace $safeprojectname$.Features.SalaryRanges.Queries.GetSalaryRanges
 {
     public class GetSalaryRangesViewModel //: SalaryRange
     {

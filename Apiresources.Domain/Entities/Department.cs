@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TalentManagementApi.Domain.Common;
 
-namespace TalentManagementApi.Domain.Entities
+namespace $safeprojectname$.Entities
 {
     public class Department : AuditableBaseEntity
     {

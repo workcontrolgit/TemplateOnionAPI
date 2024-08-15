@@ -1,4 +1,4 @@
-﻿namespace $safeprojectname$.Application.Parameters
+﻿namespace $safeprojectname$.Parameters
 {
     public class OrderByParameter
     {

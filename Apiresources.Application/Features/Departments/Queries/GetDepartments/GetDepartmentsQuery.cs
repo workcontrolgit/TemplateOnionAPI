@@ -3,11 +3,11 @@ using MediatR;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using TalentManagementApi.Application.Interfaces;
-using TalentManagementApi.Application.Interfaces.Repositories;
-using TalentManagementApi.Application.Parameters;
+using $safeprojectname$.Interfaces;
+using $safeprojectname$.Interfaces.Repositories;
+using $safeprojectname$.Parameters;
 
-namespace $safeprojectname$.Application.Features.Departments.Queries.GetDepartments
+namespace $safeprojectname$.Features.Departments.Queries.GetDepartments
 {
     /// <summary>
     /// GetAllDepartmentsQuery - handles media IRequest
