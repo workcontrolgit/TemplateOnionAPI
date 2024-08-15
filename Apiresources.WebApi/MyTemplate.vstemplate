@@ -24,8 +24,10 @@
       </Folder>
       <Folder Name="Controllers" TargetFolderName="Controllers">
         <Folder Name="v1" TargetFolderName="v1">
+          <ProjectItem ReplaceParameters="true" TargetFileName="DepartmentsController.cs">DepartmentsController.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="EmployeesController.cs">EmployeesController.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="PositionsController.cs">PositionsController.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="SalaryRangesController.cs">SalaryRangesController.cs</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="BaseApiController.cs">BaseApiController.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MetaController.cs">MetaController.cs</ProjectItem>

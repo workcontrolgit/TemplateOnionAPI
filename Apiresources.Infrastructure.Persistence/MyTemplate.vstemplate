@@ -27,6 +27,9 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="PositionRepositoryAsync.cs">PositionRepositoryAsync.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="SalaryRangeRepositoryAsync.cs">SalaryRangeRepositoryAsync.cs</ProjectItem>
       </Folder>
+      <Folder Name="SeedData" TargetFolderName="SeedData">
+        <ProjectItem ReplaceParameters="true" TargetFileName="DbInitializer.cs">DbInitializer.cs</ProjectItem>
+      </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="ServiceRegistration.cs">ServiceRegistration.cs</ProjectItem>
     </Project>
   </TemplateContent>

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace $safeprojectname$.WebApi.Controllers.v1
+namespace $safeprojectname$.Controllers.v1
 {
     [ApiVersion("1.0")]
     public class DepartmentsController : BaseApiController
