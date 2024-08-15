@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TalentManagementApi.Domain.Common;
+using $safeprojectname$.Common;
 
 namespace $safeprojectname$.Entities
 {

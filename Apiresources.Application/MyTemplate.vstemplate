@@ -90,8 +90,10 @@
       </Folder>
       <Folder Name="Interfaces" TargetFolderName="Interfaces">
         <Folder Name="Repositories" TargetFolderName="Repositories">
+          <ProjectItem ReplaceParameters="true" TargetFileName="IDepartmentRepositoryAsync.cs">IDepartmentRepositoryAsync.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IEmployeeRepositoryAsync.cs">IEmployeeRepositoryAsync.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="IPositionRepositoryAsync.cs">IPositionRepositoryAsync.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ISalaryRangeRepositoryAsync.cs">ISalaryRangeRepositoryAsync.cs</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="IDataShapeHelper.cs">IDataShapeHelper.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="IDateTimeService.cs">IDateTimeService.cs</ProjectItem>
