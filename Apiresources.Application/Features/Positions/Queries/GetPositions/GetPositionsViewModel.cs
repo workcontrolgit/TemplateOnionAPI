@@ -8,6 +8,7 @@ namespace $safeprojectname$.Features.Positions.Queries.GetPositions
         public string PositionTitle { get; set; }
         public string PositionNumber { get; set; }
         public string PositionDescription { get; set; }
-        public decimal PositionSalary { get; set; }
+        public virtual Department Department { get; set; }
+        public virtual SalaryRange SalaryRange { get; set; }
     }
 }
