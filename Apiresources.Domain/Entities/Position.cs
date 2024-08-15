@@ -1,6 +1,6 @@
 ﻿using $safeprojectname$.Common;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System;
+using System.Collections.Generic;
 
 namespace $safeprojectname$.Entities
 {
@@ -9,8 +9,26 @@ namespace $safeprojectname$.Entities
         public string PositionTitle { get; set; }
         public string PositionNumber { get; set; }
         public string PositionDescription { get; set; }
-        public string PostionArea { get; set; }
-        public string PostionType { get; set; }
-        public decimal PositionSalary { get; set; }
+
+        // Foreign Key for Department
+        public Guid DepartmentId { get; set; }
+
+        // Navigation Property for Department
+        public virtual Department Department { get; set; }
+
+        // Navigation Property for related Employees
+        public virtual ICollection<Employee> Employees { get; set; }
+
+        // Foreign Key for SalaryRange
+        public Guid SalaryRangeId { get; set; }
+
+        // Navigation Property for SalaryRange
+        public virtual SalaryRange SalaryRange { get; set; }
+
+        public Position()
+        {
+            Employees = new HashSet<Employee>();
+        }
+
     }
 }

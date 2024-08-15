@@ -1,6 +1,6 @@
 ﻿namespace $safeprojectname$.Parameters
 {
-    public class OrderByParameter
+    public class ListParameter
     {
         public virtual string OrderBy { get; set; }
     }

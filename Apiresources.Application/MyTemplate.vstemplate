@@ -107,7 +107,7 @@
       </Folder>
       <Folder Name="Parameters" TargetFolderName="Parameters">
         <ProjectItem ReplaceParameters="true" TargetFileName="Column.cs">Column.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="OrderByParameter.cs">OrderByParameter.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ListParameter.cs">ListParameter.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="PagingParameter.cs">PagingParameter.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="QueryParameter.cs">QueryParameter.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="RecordsCount.cs">RecordsCount.cs</ProjectItem>

@@ -27,8 +27,10 @@ namespace $safeprojectname$.Interfaces.Repositories
     {
         Task<bool> IsUniquePositionNumberAsync(string positionNumber);
 
-        Task<bool> SeedDataAsync(int rowCount);
+        Task<bool> SeedDataAsync(int rowCount, IEnumerable<Department> departments, IEnumerable<SalaryRange> salaryRanges);
 
-        Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedPositionReponseAsync(GetPositionsQuery requestParameters);
+        Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPositionReponseAsync(GetPositionsQuery requestParameters);
+
+        Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> PagedPositionReponseAsync(PagedPositionsQuery requestParameters);
     }
 }

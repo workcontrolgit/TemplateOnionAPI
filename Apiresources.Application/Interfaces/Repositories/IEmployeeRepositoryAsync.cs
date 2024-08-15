@@ -15,6 +15,8 @@ namespace $safeprojectname$.Interfaces.Repositories
     /// </returns>
     public interface IEmployeeRepositoryAsync : IGenericRepositoryAsync<Employee>
     {
-        Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedEmployeeResponseAsync(GetEmployeesQuery requestParameters);
+        Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetEmployeeResponseAsync(GetEmployeesQuery requestParameters);
+
+        Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedEmployeeResponseAsync(PagedEmployeesQuery requestParameters);
     }
 }

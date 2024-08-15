@@ -18,7 +18,6 @@ namespace $safeprojectname$.Mock
             RuleFor(o => o.CreatedBy, f => f.Name.FullName());
             RuleFor(o => o.LastModified, f => f.Date.Recent(1));
             RuleFor(o => o.LastModifiedBy, f => f.Name.FullName());
-            RuleFor(o => o.PositionSalary, f => f.Finance.Amount());
         }
     }
 }

@@ -14,7 +14,7 @@ namespace $safeprojectname$.Features.Departments.Queries.GetDepartments
     /// BaseRequestParameter - contains paging parameters
     /// To add filter/search parameters, add search properties to the body of this class
     /// </summary>
-    public class GetDepartmentsQuery : OrderByParameter, IRequest<IEnumerable<GetDepartmentsViewModel>>
+    public class GetDepartmentsQuery : ListParameter, IRequest<IEnumerable<GetDepartmentsViewModel>>
     {
     }
 
