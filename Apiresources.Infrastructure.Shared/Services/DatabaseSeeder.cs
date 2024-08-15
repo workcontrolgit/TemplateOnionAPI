@@ -3,10 +3,10 @@ using Bogus.DataSets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TalentManagementApi.Domain.Entities;
-using TalentManagementApi.Domain.Enums;
+using $ext_projectname$.Domain.Entities;
+using $ext_projectname$.Domain.Enums;
 
-namespace TalentManagementApi.Infrastructure.Shared.Services
+namespace $safeprojectname$.Services
 {
     public class DatabaseSeeder
     {
