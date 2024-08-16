@@ -1,7 +1,4 @@
-﻿using $safeprojectname$.Middlewares;
-using Microsoft.AspNetCore.Builder;
-
-namespace $safeprojectname$.Extensions
+﻿namespace $safeprojectname$.Extensions
 {
     public static class AppExtensions
     {

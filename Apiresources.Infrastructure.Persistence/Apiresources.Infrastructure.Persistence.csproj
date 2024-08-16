@@ -6,18 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EFCore.BulkExtensions" Version="8.0.0" />
+    <PackageReference Include="EFCore.BulkExtensions" Version="8.1.0" />
     <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="8.1.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.7" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.4.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\$ext_projectname$.Application\$ext_projectname$.Application.csproj" />
     <ProjectReference Include="..\$ext_projectname$.Domain\$ext_projectname$.Domain.csproj" />
+    <ProjectReference Include="..\$ext_projectname$.Infrastructure.Shared\$ext_projectname$.Infrastructure.Shared.csproj" />
   </ItemGroup>
 
 </Project>

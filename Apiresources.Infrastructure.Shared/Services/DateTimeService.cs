@@ -1,7 +1,4 @@
-﻿using $ext_projectname$.Application.Interfaces;
-using System;
-
-namespace $safeprojectname$.Services
+﻿namespace $safeprojectname$.Services
 {
     public class DateTimeService : IDateTimeService
     {

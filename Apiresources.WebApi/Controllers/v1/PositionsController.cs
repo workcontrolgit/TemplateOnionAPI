@@ -1,18 +1,4 @@
-﻿using $ext_projectname$.Application.Features.Positions.Commands.CreatePosition;
-using $ext_projectname$.Application.Features.Positions.Commands.DeletePositionById;
-using $ext_projectname$.Application.Features.Positions.Commands.UpdatePosition;
-using $ext_projectname$.Application.Features.Positions.Queries.GetPositionById;
-using $ext_projectname$.Application.Features.Positions.Queries.GetPositions;
-using $safeprojectname$.Extensions;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace $safeprojectname$.Controllers.v1
+﻿namespace $safeprojectname$.Controllers.v1
 {
     [ApiVersion("1.0")]
     public class PositionsController : BaseApiController

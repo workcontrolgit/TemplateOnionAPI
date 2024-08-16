@@ -1,6 +1,4 @@
-﻿using $safeprojectname$.Parameters;
-
-namespace $safeprojectname$.Wrappers
+﻿namespace $safeprojectname$.Wrappers
 {
     public class PagedResponse<T> : Response<T>
     {

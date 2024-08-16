@@ -1,8 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace $safeprojectname$.Controllers
+﻿namespace $safeprojectname$.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

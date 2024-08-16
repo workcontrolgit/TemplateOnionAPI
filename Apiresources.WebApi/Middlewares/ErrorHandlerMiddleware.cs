@@ -1,14 +1,4 @@
-﻿using $ext_projectname$.Application.Exceptions;
-using $ext_projectname$.Application.Wrappers;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-
-namespace $safeprojectname$.Middlewares
+﻿namespace $safeprojectname$.Middlewares
 {
     public class ErrorHandlerMiddleware
     {

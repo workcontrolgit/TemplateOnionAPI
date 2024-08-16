@@ -22,11 +22,13 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="PositionSeedBogusConfig.cs">PositionSeedBogusConfig.cs</ProjectItem>
       </Folder>
       <Folder Name="Services" TargetFolderName="Services">
+        <ProjectItem ReplaceParameters="true" TargetFileName="DatabaseSeeder.cs">DatabaseSeeder.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="DateTimeService.cs">DateTimeService.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="EmailService.cs">EmailService.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MockService.cs">MockService.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="ServiceRegistration.cs">ServiceRegistration.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Using.cs">Using.cs</ProjectItem>
     </Project>
   </TemplateContent>
 </VSTemplate>

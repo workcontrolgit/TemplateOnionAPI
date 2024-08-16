@@ -1,12 +1,4 @@
-﻿using $safeprojectname$.Interfaces;
-using $ext_projectname$.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Helpers
+﻿namespace $safeprojectname$.Helpers
 {
     public class DataShapeHelper<T> : IDataShapeHelper<T>
     {

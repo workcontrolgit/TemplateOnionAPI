@@ -1,15 +1,4 @@
-﻿using $ext_projectname$.Application.DTOs.Email;
-using $ext_projectname$.Application.Exceptions;
-using $ext_projectname$.Application.Interfaces;
-using $ext_projectname$.Domain.Settings;
-using MailKit.Net.Smtp;
-using MailKit.Security;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using MimeKit;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Services
+﻿namespace $safeprojectname$.Services
 {
     public class EmailService : IEmailService
     {

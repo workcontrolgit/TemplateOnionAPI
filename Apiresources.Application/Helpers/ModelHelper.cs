@@ -1,8 +1,4 @@
-﻿using $safeprojectname$.Interfaces;
-using System;
-using System.Linq;
-
-namespace $safeprojectname$.Helpers
+﻿namespace $safeprojectname$.Helpers
 {
     public class ModelHelper : IModelHelper
     {
