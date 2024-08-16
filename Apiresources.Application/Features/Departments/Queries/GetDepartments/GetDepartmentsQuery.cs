@@ -1,13 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using $safeprojectname$.Interfaces;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Parameters;
-
-namespace $safeprojectname$.Features.Departments.Queries.GetDepartments
+﻿namespace $safeprojectname$.Features.Departments.Queries.GetDepartments
 {
     /// <summary>
     /// GetAllDepartmentsQuery - handles media IRequest

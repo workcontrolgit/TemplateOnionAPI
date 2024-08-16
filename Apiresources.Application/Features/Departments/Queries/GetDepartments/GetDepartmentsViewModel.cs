@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 
 namespace $safeprojectname$.Features.Departments.Queries.GetDepartments
 {

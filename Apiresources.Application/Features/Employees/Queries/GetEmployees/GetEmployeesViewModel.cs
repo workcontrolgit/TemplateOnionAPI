@@ -1,6 +1,4 @@
-﻿using $ext_projectname$.Domain.Entities;
-using $ext_projectname$.Domain.Enums;
-using System;
+﻿
 
 namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
 {

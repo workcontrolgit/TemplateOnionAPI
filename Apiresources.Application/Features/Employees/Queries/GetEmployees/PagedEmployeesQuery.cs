@@ -1,15 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using $safeprojectname$.Interfaces;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Parameters;
-using $safeprojectname$.Wrappers;
-using $ext_projectname$.Domain.Entities;
-
-namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
+﻿namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
 {
     public partial class PagedEmployeesQuery : QueryParameter, IRequest<PagedDataTableResponse<IEnumerable<Entity>>>
     {

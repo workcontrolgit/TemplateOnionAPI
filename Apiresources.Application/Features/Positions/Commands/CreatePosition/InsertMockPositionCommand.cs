@@ -1,10 +1,4 @@
-﻿using MediatR;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Wrappers;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
+﻿namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
 {
     public partial class InsertMockPositionCommand : IRequest<Response<int>>
     {

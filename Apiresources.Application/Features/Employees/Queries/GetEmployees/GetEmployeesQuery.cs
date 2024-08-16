@@ -1,15 +1,4 @@
-﻿using $safeprojectname$.Interfaces;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Parameters;
-using $safeprojectname$.Wrappers;
-using $ext_projectname$.Domain.Entities;
-using AutoMapper;
-using MediatR;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
+﻿namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
 {
     /// <summary>
     /// GetAllEmployeesQuery - handles media IRequest

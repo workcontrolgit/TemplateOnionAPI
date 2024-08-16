@@ -1,12 +1,4 @@
-﻿using MediatR;
-using $safeprojectname$.Exceptions;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Wrappers;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Features.Positions.Commands.UpdatePosition
+﻿namespace $safeprojectname$.Features.Positions.Commands.UpdatePosition
 {
     public class UpdatePositionCommand : IRequest<Response<Guid>>
     {

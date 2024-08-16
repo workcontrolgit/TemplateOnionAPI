@@ -1,9 +1,4 @@
-﻿using LinqKit;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Interfaces
+﻿namespace $safeprojectname$.Interfaces
 {
     public interface IGenericRepositoryAsync<T> where T : class
     {

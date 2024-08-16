@@ -1,17 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using $ext_projectname$.Application;
-using $ext_projectname$.Infrastructure.Persistence;
-using $ext_projectname$.Infrastructure.Persistence.Contexts;
-using $ext_projectname$.Infrastructure.Persistence.SeedData;
-using $ext_projectname$.Infrastructure.Shared;
-using $ext_projectname$.WebApi.Extensions;
-using Serilog;
-using System;
-
 try
 {
     var builder = WebApplication.CreateBuilder(args);

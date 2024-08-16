@@ -1,10 +1,4 @@
-﻿using $safeprojectname$.Features.Positions.Queries.GetPositions;
-using $safeprojectname$.Parameters;
-using $ext_projectname$.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Interfaces.Repositories
+﻿namespace $safeprojectname$.Interfaces.Repositories
 {
     /// <summary>
     /// Repository interface for Position entity with asynchronous methods.

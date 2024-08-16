@@ -1,13 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Wrappers;
-using $ext_projectname$.Domain.Entities;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
+﻿namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
 {
     public partial class CreatePositionCommand : IRequest<Response<Guid>>
     {

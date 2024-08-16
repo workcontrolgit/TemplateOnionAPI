@@ -1,7 +1,4 @@
-﻿using $ext_projectname$.Domain.Entities;
-using System;
-
-namespace $safeprojectname$.Features.Positions.Queries.GetPositions
+﻿namespace $safeprojectname$.Features.Positions.Queries.GetPositions
 {
     public class GetPositionsViewModel
     {

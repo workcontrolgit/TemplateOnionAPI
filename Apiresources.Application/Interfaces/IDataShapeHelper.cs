@@ -1,8 +1,4 @@
-﻿using $ext_projectname$.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Interfaces
+﻿namespace $safeprojectname$.Interfaces
 {
     public interface IDataShapeHelper<T>
     {

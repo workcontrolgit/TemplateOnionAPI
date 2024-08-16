@@ -1,13 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using $safeprojectname$.Interfaces;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Parameters;
-
-namespace $safeprojectname$.Features.SalaryRanges.Queries.GetSalaryRanges
+﻿namespace $safeprojectname$.Features.SalaryRanges.Queries.GetSalaryRanges
 {
     /// <summary>
     /// GetAllSalaryRangesQuery - handles media IRequest

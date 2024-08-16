@@ -1,15 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using $safeprojectname$.Interfaces;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Parameters;
-using $safeprojectname$.Wrappers;
-using $ext_projectname$.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Features.Positions.Queries.GetPositions
+﻿namespace $safeprojectname$.Features.Positions.Queries.GetPositions
 {
     public partial class PagedPositionsQuery : QueryParameter, IRequest<PagedDataTableResponse<IEnumerable<Entity>>>
     {
