@@ -120,6 +120,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="Response.cs">Response.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="ServiceExtensions.cs">ServiceExtensions.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Using.cs">Using.cs</ProjectItem>
     </Project>
   </TemplateContent>
 </VSTemplate>

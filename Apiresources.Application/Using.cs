@@ -1,9 +1,11 @@
 ﻿global using AutoMapper;
 global using FluentValidation;
 global using FluentValidation.Results;
+global using LinqKit;
 global using MediatR;
 global using Microsoft.Extensions.DependencyInjection;
 global using $safeprojectname$.Behaviours;
+global using $safeprojectname$.DTOs.Email;
 global using $safeprojectname$.Exceptions;
 global using $safeprojectname$.Features.Departments.Queries.GetDepartments;
 global using $safeprojectname$.Features.Employees.Queries.GetEmployees;
