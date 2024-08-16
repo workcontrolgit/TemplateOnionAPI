@@ -1,4 +1,5 @@
-﻿global using MediatR;
+﻿global using Asp.Versioning;
+global using MediatR;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Hosting;
