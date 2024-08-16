@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using $ext_projectname$.Application.Interfaces.Repositories;
-using $ext_projectname$.Domain.Entities;
-using $safeprojectname$.Contexts;
-using $safeprojectname$.Repository;
-
-namespace $safeprojectname$.Repositories
+﻿namespace $safeprojectname$.Repositories
 {
     public class SalaryRangeRepositoryAsync : GenericRepositoryAsync<SalaryRange>, ISalaryRangeRepositoryAsync
     {

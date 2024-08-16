@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using $ext_projectname$.Domain.Entities;
-
-internal static class ApplicationDbContextHelpers
+﻿internal static class ApplicationDbContextHelpers
 {
     public static void DatabaseModelCreating(ModelBuilder modelBuilder)
     {

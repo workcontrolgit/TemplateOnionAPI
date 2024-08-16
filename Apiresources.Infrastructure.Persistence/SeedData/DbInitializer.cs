@@ -1,8 +1,4 @@
-﻿using EFCore.BulkExtensions;
-using $safeprojectname$.Contexts;
-using $ext_projectname$.Infrastructure.Shared.Services;
-
-namespace $safeprojectname$.SeedData
+﻿namespace $safeprojectname$.SeedData
 {
     public static class DbInitializer
     {

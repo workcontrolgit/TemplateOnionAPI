@@ -31,6 +31,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="DbInitializer.cs">DbInitializer.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="ServiceRegistration.cs">ServiceRegistration.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Using.cs">Using.cs</ProjectItem>         
     </Project>
   </TemplateContent>
 </VSTemplate>

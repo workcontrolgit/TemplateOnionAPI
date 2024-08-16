@@ -1,18 +1,4 @@
-﻿using $ext_projectname$.Application.Features.Employees.Queries.GetEmployees;
-using $ext_projectname$.Application.Interfaces;
-using $ext_projectname$.Application.Interfaces.Repositories;
-using $ext_projectname$.Application.Parameters;
-using $ext_projectname$.Domain.Entities;
-using $safeprojectname$.Contexts;
-using $safeprojectname$.Repository;
-using LinqKit;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Dynamic.Core;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Repositories
+﻿namespace $safeprojectname$.Repositories
 {
     public class EmployeeRepositoryAsync : GenericRepositoryAsync<Employee>, IEmployeeRepositoryAsync
     {

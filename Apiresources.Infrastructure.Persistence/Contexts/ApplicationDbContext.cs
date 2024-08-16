@@ -1,13 +1,4 @@
-﻿using $ext_projectname$.Application.Interfaces;
-using $ext_projectname$.Domain.Common;
-using $ext_projectname$.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Logging;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Contexts
+﻿namespace $safeprojectname$.Contexts
 {
     public partial class ApplicationDbContext : DbContext
     {

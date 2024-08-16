@@ -1,15 +1,4 @@
-﻿using $ext_projectname$.Application.Interfaces;
-using $safeprojectname$.Contexts;
-using EFCore.BulkExtensions;
-using LinqKit;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Dynamic.Core;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Repository
+﻿namespace $safeprojectname$.Repository
 {
     public class GenericRepositoryAsync<T> : IGenericRepositoryAsync<T> where T : class
     {
