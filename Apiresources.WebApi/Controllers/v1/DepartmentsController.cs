@@ -1,8 +1,4 @@
-﻿using $ext_projectname$.Application.Features.Departments.Queries.GetDepartments;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Controllers.v1
+﻿namespace $safeprojectname$.Controllers.v1
 {
     [ApiVersion("1.0")]
     public class DepartmentsController : BaseApiController
