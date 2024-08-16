@@ -1,9 +1,4 @@
-﻿using $ext_projectname$.Application.Interfaces;
-using $ext_projectname$.Domain.Entities;
-using $safeprojectname$.Mock;
-using System.Collections.Generic;
-
-namespace $safeprojectname$.Services
+﻿namespace $safeprojectname$.Services
 {
     public class MockService : IMockService
     {

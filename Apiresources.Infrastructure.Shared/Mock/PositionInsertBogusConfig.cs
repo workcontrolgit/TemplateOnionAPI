@@ -1,10 +1,4 @@
-﻿using $ext_projectname$.Domain.Entities;
-using Bogus;
-using System;
-using System.Collections.Generic;
-
-
-namespace $safeprojectname$.Mock
+﻿namespace $safeprojectname$.Mock
 {
     public class PositionInsertBogusConfig : Faker<Position>
     {

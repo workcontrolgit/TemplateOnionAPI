@@ -1,10 +1,4 @@
-﻿using $ext_projectname$.Domain.Entities;
-using $ext_projectname$.Domain.Enums;
-using AutoBogus;
-using Bogus;
-using System;
-
-namespace $safeprojectname$.Mock
+﻿namespace $safeprojectname$.Mock
 {
 public class EmployeeBogusConfig : AutoFaker<Employee>
 {

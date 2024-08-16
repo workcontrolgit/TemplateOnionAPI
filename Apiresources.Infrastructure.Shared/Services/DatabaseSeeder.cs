@@ -1,12 +1,4 @@
-﻿using Bogus;
-using Bogus.DataSets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using $ext_projectname$.Domain.Entities;
-using $ext_projectname$.Domain.Enums;
-
-namespace $safeprojectname$.Services
+﻿namespace $safeprojectname$.Services
 {
     public class DatabaseSeeder
     {

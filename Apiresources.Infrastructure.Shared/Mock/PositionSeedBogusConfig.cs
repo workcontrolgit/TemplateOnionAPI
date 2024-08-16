@@ -1,9 +1,4 @@
-﻿using $ext_projectname$.Domain.Entities;
-using AutoBogus;
-using Bogus;
-using System;
-
-namespace $safeprojectname$.Mock
+﻿namespace $safeprojectname$.Mock
 {
     public class PositionSeedBogusConfig : AutoFaker<Position>
     {
