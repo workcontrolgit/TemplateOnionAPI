@@ -1,6 +1,6 @@
-﻿using System;
+﻿
 
-namespace $safeprojectname$.Application.Features.Departments.Queries.GetDepartments
+namespace $safeprojectname$.Features.Departments.Queries.GetDepartments
 {
     public class GetDepartmentsViewModel //: Department
     {

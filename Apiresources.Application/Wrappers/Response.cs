@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace $safeprojectname$.Wrappers
+﻿namespace $safeprojectname$.Wrappers
 {
     public class Response<T>
     {

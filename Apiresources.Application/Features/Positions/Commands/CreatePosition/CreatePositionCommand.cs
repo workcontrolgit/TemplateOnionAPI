@@ -1,20 +1,13 @@
-﻿using AutoMapper;
-using MediatR;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Wrappers;
-using $ext_projectname$.Domain.Entities;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
+﻿namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
 {
     public partial class CreatePositionCommand : IRequest<Response<Guid>>
     {
         public string PositionTitle { get; set; }
         public string PositionNumber { get; set; }
         public string PositionDescription { get; set; }
-        public decimal PositionSalary { get; set; }
+        public Guid DepartmentId { get; set; }
+        public Guid SalaryRangeId { get; set; }
+
     }
 
     public class CreatePositionCommandHandler : IRequestHandler<CreatePositionCommand, Response<Guid>>

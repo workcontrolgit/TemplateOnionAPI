@@ -1,20 +1,11 @@
-﻿using AutoMapper;
-using MediatR;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using TalentManagementApi.Application.Interfaces;
-using TalentManagementApi.Application.Interfaces.Repositories;
-using TalentManagementApi.Application.Parameters;
-
-namespace $safeprojectname$.Application.Features.Departments.Queries.GetDepartments
+﻿namespace $safeprojectname$.Features.Departments.Queries.GetDepartments
 {
     /// <summary>
     /// GetAllDepartmentsQuery - handles media IRequest
     /// BaseRequestParameter - contains paging parameters
     /// To add filter/search parameters, add search properties to the body of this class
     /// </summary>
-    public class GetDepartmentsQuery : OrderByParameter, IRequest<IEnumerable<GetDepartmentsViewModel>>
+    public class GetDepartmentsQuery : ListParameter, IRequest<IEnumerable<GetDepartmentsViewModel>>
     {
     }
 

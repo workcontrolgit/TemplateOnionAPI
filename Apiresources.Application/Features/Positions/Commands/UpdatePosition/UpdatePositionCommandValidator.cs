@@ -1,7 +1,3 @@
-using FluentValidation;
-using $safeprojectname$.Features.Positions.Commands.UpdatePosition;
-using $safeprojectname$.Interfaces.Repositories;
-
 namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
 {
     public class UpdatePositionCommandValidator : AbstractValidator<UpdatePositionCommand>

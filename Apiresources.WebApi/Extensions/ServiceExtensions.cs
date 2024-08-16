@@ -1,13 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Text.Json;
-
-namespace $safeprojectname$.Extensions
+﻿namespace $safeprojectname$.Extensions
 {
     public static class ServiceExtensions
     {
@@ -85,14 +76,30 @@ namespace $safeprojectname$.Extensions
             });
         }
 
-
         public static void AddVersionedApiExplorerExtension(this IServiceCollection services)
         {
-            services.AddVersionedApiExplorer(o =>
+            var apiVersioningBuilder = services.AddApiVersioning(options =>
             {
-                o.GroupNameFormat = "'v'VVV";
-                o.SubstituteApiVersionInUrl = true;
-            });
+                options.ReportApiVersions = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                // Use whatever reader you want
+                options.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
+                                                new HeaderApiVersionReader("x-api-version"),
+                                                new MediaTypeApiVersionReader("x-api-version"));
+            }); // Nuget Package: Asp.Versioning.Mvc
+
+            apiVersioningBuilder.AddApiExplorer(options =>
+            {
+                // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
+                // note: the specified format code will format the version as "'v'major[.minor][-status]"
+                options.GroupNameFormat = "'v'VVV";
+
+                // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
+                // can also be used to control the format of the API version in route templates
+                options.SubstituteApiVersionInUrl = true;
+            }); // Nuget Package: Asp.Versioning.Mvc.ApiExplorer
+
         }
         public static void AddApiVersioningExtension(this IServiceCollection services)
         {

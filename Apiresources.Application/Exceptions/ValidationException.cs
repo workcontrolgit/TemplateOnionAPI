@@ -1,8 +1,4 @@
-﻿using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-
-namespace $safeprojectname$.Exceptions
+﻿namespace $safeprojectname$.Exceptions
 {
     public class ValidationException : Exception
     {

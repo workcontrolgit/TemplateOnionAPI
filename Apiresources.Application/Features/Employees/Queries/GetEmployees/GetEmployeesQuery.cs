@@ -1,15 +1,4 @@
-﻿using $safeprojectname$.Interfaces;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Parameters;
-using $safeprojectname$.Wrappers;
-using $ext_projectname$.Domain.Entities;
-using AutoMapper;
-using MediatR;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
+﻿namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
 {
     /// <summary>
     /// GetAllEmployeesQuery - handles media IRequest
@@ -19,20 +8,20 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
     public class GetEmployeesQuery : QueryParameter, IRequest<PagedResponse<IEnumerable<Entity>>>
     {
         //examples:
-        public string EmployeeNumber { get; set; }
-        public string EmployeeTitle { get; set; }
         public string LastName { get; set; }
+
         public string FirstName { get; set; }
         public string Email { get; set; }
+        public string EmployeeNumber { get; set; }
+        public string PositionTitle { get; set; }
 
+        public ListParameter ShapeParameter { get; set; }
     }
 
     public class GetAllEmployeesQueryHandler : IRequestHandler<GetEmployeesQuery, PagedResponse<IEnumerable<Entity>>>
     {
         private readonly IEmployeeRepositoryAsync _employeeRepository;
         private readonly IModelHelper _modelHelper;
-
-
 
         /// <summary>
         /// Constructor for GetAllEmployeesQueryHandler class.
@@ -48,8 +37,6 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
             _modelHelper = modelHelper;
         }
 
-
-
         /// <summary>
         /// Handles the GetEmployeesQuery request and returns a PagedResponse containing the requested data.
         /// </summary>
@@ -58,25 +45,25 @@ namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
         /// <returns>A PagedResponse containing the requested data.</returns>
         public async Task<PagedResponse<IEnumerable<Entity>>> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
         {
-            var validFilter = request;
+            var objRequest = request;
             //filtered fields security
-            if (!string.IsNullOrEmpty(validFilter.Fields))
+            if (!string.IsNullOrEmpty(objRequest.Fields))
             {
                 //limit to fields in view model
-                validFilter.Fields = _modelHelper.ValidateModelFields<GetEmployeesViewModel>(validFilter.Fields);
+                objRequest.Fields = _modelHelper.ValidateModelFields<GetEmployeesViewModel>(objRequest.Fields);
             }
-            if (string.IsNullOrEmpty(validFilter.Fields))
+            else
             {
                 //default fields from view model
-                validFilter.Fields = _modelHelper.GetModelFields<GetEmployeesViewModel>();
+                objRequest.Fields = _modelHelper.GetModelFields<GetEmployeesViewModel>();
             }
             // query based on filter
-            var qryResult = await _employeeRepository.GetPagedEmployeeResponseAsync(validFilter);
+            var qryResult = await _employeeRepository.GetEmployeeResponseAsync(objRequest);
             var data = qryResult.data;
             RecordsCount recordCount = qryResult.recordsCount;
 
             // response wrapper
-            return new PagedResponse<IEnumerable<Entity>>(data, validFilter.PageNumber, validFilter.PageSize, recordCount);
+            return new PagedResponse<IEnumerable<Entity>>(data, objRequest.PageNumber, objRequest.PageSize, recordCount);
         }
     }
 }

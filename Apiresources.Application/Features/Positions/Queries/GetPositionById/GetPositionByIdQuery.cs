@@ -1,13 +1,4 @@
-﻿using MediatR;
-using $safeprojectname$.Exceptions;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Wrappers;
-using $ext_projectname$.Domain.Entities;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Features.Positions.Queries.GetPositionById
+﻿namespace $safeprojectname$.Features.Positions.Queries.GetPositionById
 {
     public class GetPositionByIdQuery : IRequest<Response<Position>>
     {

@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-
-namespace $safeprojectname$.Controllers
+﻿namespace $safeprojectname$.Controllers
 {
     public class MetaController : BaseApiController
     {

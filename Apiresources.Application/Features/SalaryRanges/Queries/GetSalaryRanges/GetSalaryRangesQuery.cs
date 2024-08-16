@@ -1,20 +1,11 @@
-﻿using AutoMapper;
-using MediatR;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using TalentManagementApi.Application.Interfaces;
-using TalentManagementApi.Application.Interfaces.Repositories;
-using TalentManagementApi.Application.Parameters;
-
-namespace $safeprojectname$.Application.Features.SalaryRanges.Queries.GetSalaryRanges
+﻿namespace $safeprojectname$.Features.SalaryRanges.Queries.GetSalaryRanges
 {
     /// <summary>
     /// GetAllSalaryRangesQuery - handles media IRequest
     /// BaseRequestParameter - contains paging parameters
     /// To add filter/search parameters, add search properties to the body of this class
     /// </summary>
-    public class GetSalaryRangesQuery : OrderByParameter, IRequest<IEnumerable<GetSalaryRangesViewModel>>
+    public class GetSalaryRangesQuery : ListParameter, IRequest<IEnumerable<GetSalaryRangesViewModel>>
     {
     }
 

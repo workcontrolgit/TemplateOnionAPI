@@ -1,9 +1,4 @@
-﻿using FluentValidation;
-using $safeprojectname$.Interfaces.Repositories;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
+﻿namespace $safeprojectname$.Features.Positions.Commands.CreatePosition
 {
     public class CreatePositionCommandValidator : AbstractValidator<CreatePositionCommand>
     {

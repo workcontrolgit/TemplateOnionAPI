@@ -1,7 +1,4 @@
-﻿using $safeprojectname$.DTOs.Email;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Interfaces
+﻿namespace $safeprojectname$.Interfaces
 {
     public interface IEmailService
     {

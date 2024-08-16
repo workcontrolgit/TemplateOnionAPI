@@ -21,9 +21,11 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="BaseEntity.cs">BaseEntity.cs</ProjectItem>
       </Folder>
       <Folder Name="Entities" TargetFolderName="Entities">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Department.cs">Department.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Employee.cs">Employee.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Entity.cs">Entity.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Position.cs">Position.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SalaryRange.cs">SalaryRange.cs</ProjectItem>
       </Folder>
       <Folder Name="Enums" TargetFolderName="Enums">
         <ProjectItem ReplaceParameters="true" TargetFileName="Gender.cs">Gender.cs</ProjectItem>
@@ -32,6 +34,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="JWTSettings.cs">JWTSettings.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MailSettings.cs">MailSettings.cs</ProjectItem>
       </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Using.cs">Using.cs</ProjectItem>      
     </Project>
   </TemplateContent>
 </VSTemplate>

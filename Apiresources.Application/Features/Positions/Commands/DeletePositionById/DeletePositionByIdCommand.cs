@@ -1,12 +1,4 @@
-﻿using MediatR;
-using $safeprojectname$.Exceptions;
-using $safeprojectname$.Interfaces.Repositories;
-using $safeprojectname$.Wrappers;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Features.Positions.Commands.DeletePositionById
+﻿namespace $safeprojectname$.Features.Positions.Commands.DeletePositionById
 {
     public class DeletePositionByIdCommand : IRequest<Response<Guid>>
     {

@@ -1,8 +1,4 @@
-﻿using $ext_projectname$.Application.Features.Employees.Queries.GetEmployees;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Controllers.v1
+﻿namespace $safeprojectname$.Controllers.v1
 {
     [ApiVersion("1.0")]
     public class EmployeesController : BaseApiController

@@ -1,10 +1,4 @@
-﻿using $safeprojectname$.Features.Positions.Queries.GetPositions;
-using $safeprojectname$.Parameters;
-using $ext_projectname$.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace $safeprojectname$.Interfaces.Repositories
+﻿namespace $safeprojectname$.Interfaces.Repositories
 {
     /// <summary>
     /// Repository interface for Position entity with asynchronous methods.
@@ -27,8 +21,10 @@ namespace $safeprojectname$.Interfaces.Repositories
     {
         Task<bool> IsUniquePositionNumberAsync(string positionNumber);
 
-        Task<bool> SeedDataAsync(int rowCount);
+        Task<bool> SeedDataAsync(int rowCount, IEnumerable<Department> departments, IEnumerable<SalaryRange> salaryRanges);
 
-        Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedPositionReponseAsync(GetPositionsQuery requestParameters);
+        Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPositionReponseAsync(GetPositionsQuery requestParameters);
+
+        Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> PagedPositionReponseAsync(PagedPositionsQuery requestParameters);
     }
 }

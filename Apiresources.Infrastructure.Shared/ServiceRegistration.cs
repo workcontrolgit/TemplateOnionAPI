@@ -1,10 +1,4 @@
-﻿using $ext_projectname$.Application.Interfaces;
-using $ext_projectname$.Domain.Settings;
-using $safeprojectname$.Services;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace $safeprojectname$
+﻿namespace $safeprojectname$
 {
     public static class ServiceRegistration
     {
