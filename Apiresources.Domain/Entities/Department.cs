@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using $safeprojectname$.Common;
-
-namespace $safeprojectname$.Entities
+﻿namespace $safeprojectname$.Entities
 {
     public class Department : AuditableBaseEntity
     {

@@ -1,9 +1,4 @@
-﻿using $safeprojectname$.Common;
-using $safeprojectname$.Enums;
-using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace $safeprojectname$.Entities
+﻿namespace $safeprojectname$.Entities
 {
     public class Employee : AuditableBaseEntity
     {

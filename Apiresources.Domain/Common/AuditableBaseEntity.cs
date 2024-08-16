@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace $safeprojectname$.Common
+﻿namespace $safeprojectname$.Common
 {
     public abstract class AuditableBaseEntity : BaseEntity
     {

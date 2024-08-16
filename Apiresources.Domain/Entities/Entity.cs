@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Xml;
-using System.Xml.Schema;
-using System.Xml.Serialization;
-
-namespace $safeprojectname$.Entities
+﻿namespace $safeprojectname$.Entities
 {
     public class Entity : DynamicObject, IXmlSerializable, IDictionary<string, object>
     {

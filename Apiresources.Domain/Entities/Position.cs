@@ -1,8 +1,4 @@
-﻿using $safeprojectname$.Common;
-using System;
-using System.Collections.Generic;
-
-namespace $safeprojectname$.Entities
+﻿namespace $safeprojectname$.Entities
 {
     public class Position : AuditableBaseEntity
     {
