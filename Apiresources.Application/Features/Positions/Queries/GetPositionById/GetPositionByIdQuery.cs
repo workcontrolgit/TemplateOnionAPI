@@ -19,7 +19,6 @@
             {
                 _repository = repository;
             }
-                var entity = await _repository.GetByIdAsync(query.Id);
             // Handles the request and returns a response containing the Position entity if it exists, otherwise throws an ApiException.
             public async Task<Response<Position>> Handle(GetPositionByIdQuery query, CancellationToken cancellationToken)
             {
@@ -27,3 +26,32 @@
                 if (entity == null) throw new ApiException($"Position Not Found.");
                 return new Response<Position>(entity);
             }
+        }
+    }
+
+    // Represents a response containing a Position entity.
+    public class Response<T>
+    {
+        // The Position entity contained in the response
+        public T Data { get; set; }
+
+        // Constructor that initializes the response with the given data
+        public Response(T data)
+        {
+            Data = data;
+        }
+    }
+
+    // Represents an exception indicating that an API request could not be completed.
+    public class ApiException : Exception
+    {
+        // The error message associated with the exception
+        public string Message { get; set; }
+
+        // Constructor that initializes the exception with the given error message
+        public ApiException(string message) : base(message)
+        {
+            Message = message;
+        }
+    }
+}

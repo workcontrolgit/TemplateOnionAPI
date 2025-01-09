@@ -1,20 +1,34 @@
 ﻿namespace $safeprojectname$.Features.Employees.Queries.GetEmployees
 {
+    // This class represents a query for paginated employee data.
     public partial class PagedEmployeesQuery : QueryParameter, IRequest<PagedDataTableResponse<IEnumerable<Entity>>>
     {
-        //strong type input parameters
-        public int Draw { get; set; } //page number
+        // The page number to retrieve. 0-indexed.
+        public int Draw { get; set; }
 
-        public int Start { get; set; } //Paging first record indicator. This is the start point in the current data set (0 index based - i.e. 0 is the first record).
-        public int Length { get; set; } //page size
-        public IList<SortOrder> Order { get; set; } //Order by
-        public Search Search { get; set; } //search criteria
-        public IList<Column> Columns { get; set; } //select fields
+        // The index of the first record to retrieve in the current data set.
+        public int Start { get; set; }
+
+        // The number of records to retrieve per page.
+        public int Length { get; set; }
+
+        // The order in which to sort the retrieved records.
+        public IList<SortOrder> Order { get; set; }
+
+        // The search criteria for filtering the retrieved records.
+        public Search Search { get; set; }
+
+        // The fields to include in the retrieved records.
+        public IList<Column> Columns { get; set; }
     }
 
+    // This class handles requests for paginated employee data.
     public class PageEmployeeQueryHandler : IRequestHandler<PagedEmployeesQuery, PagedDataTableResponse<IEnumerable<Entity>>>
     {
+        // The repository used to retrieve employee data.
         private readonly IEmployeeRepositoryAsync _repository;
+
+        // Helper methods for working with models.
         private readonly IModelHelper _modelHelper;
 
         /// <summary>
@@ -22,9 +36,6 @@
         /// </summary>
         /// <param name="repository">IEmployeeRepositoryAsync object.</param>
         /// <param name="modelHelper">IModelHelper object.</param>
-        /// <returns>
-        /// PageEmployeeQueryHandler object.
-        /// </returns>
         public PageEmployeeQueryHandler(IEmployeeRepositoryAsync repository, IModelHelper modelHelper)
         {
             _repository = repository;
@@ -41,12 +52,11 @@
         {
             var objRequest = request;
 
-            // Draw map to PageNumber
+            // Convert the page number and page size from the query parameters.
             objRequest.PageNumber = (request.Start / request.Length) + 1;
-            // Length map to PageSize
             objRequest.PageSize = request.Length;
 
-            // Map order > OrderBy
+            // Convert the order parameter to an ORDER BY clause.
             var colOrder = request.Order[0];
             switch (colOrder.Column)
             {
@@ -71,17 +81,18 @@
                     break;
             }
 
+            // If no fields were specified, use the default fields from the view model.
             if (string.IsNullOrEmpty(objRequest.Fields))
             {
-                //default fields from view model
                 objRequest.Fields = _modelHelper.GetModelFields<GetEmployeesViewModel>();
             }
-            // query based on filter
+
+            // Retrieve the paginated employee data based on the query parameters.
             var qryResult = await _repository.GetPagedEmployeeResponseAsync(objRequest);
             var data = qryResult.data;
             RecordsCount recordCount = qryResult.recordsCount;
 
-            // response wrapper
+            // Return a PagedDataTableResponse containing the retrieved data.
             return new PagedDataTableResponse<IEnumerable<Entity>>(data, request.Draw, recordCount);
         }
     }
