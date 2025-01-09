@@ -20,7 +20,7 @@
 
     public class GetAllEmployeesQueryHandler : IRequestHandler<GetEmployeesQuery, PagedResponse<IEnumerable<Entity>>>
     {
-        private readonly IEmployeeRepositoryAsync _employeeRepository;
+        private readonly IEmployeeRepositoryAsync _repository;
         private readonly IModelHelper _modelHelper;
 
         /// <summary>
@@ -33,7 +33,7 @@
         /// </returns>
         public GetAllEmployeesQueryHandler(IEmployeeRepositoryAsync employeeRepository, IModelHelper modelHelper)
         {
-            _employeeRepository = employeeRepository;
+            _repository = employeeRepository;
             _modelHelper = modelHelper;
         }
 
@@ -58,7 +58,7 @@
                 objRequest.Fields = _modelHelper.GetModelFields<GetEmployeesViewModel>();
             }
             // query based on filter
-            var qryResult = await _employeeRepository.GetEmployeeResponseAsync(objRequest);
+            var qryResult = await _repository.GetEmployeeResponseAsync(objRequest);
             var data = qryResult.data;
             RecordsCount recordCount = qryResult.recordsCount;
 

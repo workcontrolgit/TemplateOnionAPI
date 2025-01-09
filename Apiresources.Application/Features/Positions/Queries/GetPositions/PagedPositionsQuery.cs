@@ -18,12 +18,24 @@
         private readonly IPositionRepositoryAsync _repository;
         private readonly IModelHelper _modelHelper;
 
+        /// <summary>
+/// Initializes a new instance of the <see cref="PagePositionQueryHandler"/> class.
+/// </summary>
+/// <param name="repository">The repository.</param>
+/// <param name="mapper">The mapper.</param>
+/// <param name="modelHelper">The model helper.</param>
         public PagePositionQueryHandler(IPositionRepositoryAsync repository, IMapper mapper, IModelHelper modelHelper)
         {
             _repository = repository;
             _modelHelper = modelHelper;
         }
 
+        /// <summary>
+/// Handles the specified request.
+/// </summary>
+/// <param name="request">The request.</param>
+/// <param name="cancellationToken">The cancellation token.</param>
+/// <returns></returns>
         public async Task<PagedDataTableResponse<IEnumerable<Entity>>> Handle(PagedPositionsQuery request, CancellationToken cancellationToken)
         {
             var objRequest = request;
@@ -38,15 +50,15 @@
             switch (colOrder.Column)
             {
                 case 0:
-                    objRequest.OrderBy = colOrder.Dir == "asc" ? "PositionNumber" : "PositionNumber DESC";
+                    objRequest.OrderBy = colOrder.Dir == "asc" ? nameof(Entity.PositionNumber) : $"{nameof(Entity.PositionNumber)} DESC";
                     break;
 
                 case 1:
-                    objRequest.OrderBy = colOrder.Dir == "asc" ? "PositionTitle" : "PositionTitle DESC";
+                    objRequest.OrderBy = colOrder.Dir == "asc" ? nameof(Entity.PositionTitle) : $"{nameof(Entity.PositionTitle)} DESC";
                     break;
 
                 case 2:
-                    objRequest.OrderBy = colOrder.Dir == "asc" ? "Department.Name" : "Department.Name DESC";
+                    objRequest.OrderBy = colOrder.Dir == "asc" ? $"{nameof(Entity.Department.Name)}" : $"{nameof(Entity.Department.Name)} DESC";
                     break;
             }
 
