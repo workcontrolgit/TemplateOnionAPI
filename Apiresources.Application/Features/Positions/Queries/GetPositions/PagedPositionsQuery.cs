@@ -4,39 +4,28 @@
     {
 
         //strong type input parameters
-        /// <summary>
-        /// Gets or sets the page number.
-        /// </summary>
         public int Draw { get; set; } //page number
-        /// <summary>
-        /// Gets or sets the starting record for paging.
-        /// </summary>
+
         public int Start { get; set; } //Paging first record indicator. This is the start point in the current data set (0 index based - i.e. 0 is the first record).
-
-        /// <summary>
-        /// Gets or sets the number of records per page for paging.
-        /// </summary>
         public int Length { get; set; } //page size
-
-        /// <summary>
-        /// Gets or sets the sorting order and direction for each column.
-        /// </summary>
         public IList<SortOrder> Order { get; set; } //Order by
-
-        /// <summary>
-        /// Gets or sets the search criteria to filter the data.
-        /// </summary>
         public Search Search { get; set; } //search criteria
-
-        /// <summary>
-        /// Gets or sets the list of columns to select in the query.
-        /// </summary>
         public IList<Column> Columns { get; set; } //select fields
     }
 
     public class PagePositionQueryHandler : IRequestHandler<PagedPositionsQuery, PagedDataTableResponse<IEnumerable<Entity>>>
     {
         private readonly IPositionRepositoryAsync _repository;
+        private readonly IModelHelper _modelHelper;
+
+        public PagePositionQueryHandler(IPositionRepositoryAsync repository, IMapper mapper, IModelHelper modelHelper)
+        {
+            _repository = repository;
+            _modelHelper = modelHelper;
+        }
+
+        public async Task<PagedDataTableResponse<IEnumerable<Entity>>> Handle(PagedPositionsQuery request, CancellationToken cancellationToken)
+        {
             var objRequest = request;
 
             // Draw map to PageNumber
@@ -49,15 +38,15 @@
             switch (colOrder.Column)
             {
                 case 0:
-                    objRequest.OrderBy = colOrder.Dir == "asc" ? nameof(Entity.PositionNumber) : $"{nameof(Entity.PositionNumber)} DESC";
+                    objRequest.OrderBy = colOrder.Dir == "asc" ? "PositionNumber" : "PositionNumber DESC";
                     break;
 
                 case 1:
-                    objRequest.OrderBy = colOrder.Dir == "asc" ? nameof(Entity.PositionTitle) : $"{nameof(Entity.PositionTitle)} DESC";
+                    objRequest.OrderBy = colOrder.Dir == "asc" ? "PositionTitle" : "PositionTitle DESC";
                     break;
 
                 case 2:
-                    objRequest.OrderBy = colOrder.Dir == "asc" ? $"{nameof(Entity.Department.Name)}" : $"{nameof(Entity.Department.Name)} DESC";
+                    objRequest.OrderBy = colOrder.Dir == "asc" ? "Department.Name" : "Department.Name DESC";
                     break;
             }
 

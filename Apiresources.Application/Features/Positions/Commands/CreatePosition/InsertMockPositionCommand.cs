@@ -25,8 +25,6 @@
             _repository = repository;
             _repositoryDepartment = departmentRepository;
             _repositorySalaryRange = repositorySalaryRange;
-            // Duplicate assignment to _repositorySalaryRange, likely a bug
-            _repositorySalaryRange = repositorySalaryRange;
         }
 
         // Handle method for processing the InsertMockPositionCommand request

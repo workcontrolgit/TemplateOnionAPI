@@ -2,7 +2,7 @@
 {
     public static class ServiceExtensions
     {
-
+        // Extension method to add Swagger documentation to the service collection
         public static void AddSwaggerExtension(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -19,6 +19,7 @@
                         Url = new Uri("https://janedoe.com/contact"),
                     }
                 });
+                // Add security definition for JWT Bearer
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -28,6 +29,7 @@
                     BearerFormat = "JWT",
                     Description = "Input your Bearer token in this format - Bearer {your token here} to access this API",
                 });
+                // Add security requirement to enforce Bearer token use
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -47,21 +49,19 @@
             });
         }
 
+        // Extension method to add and configure controllers with JSON options
         public static void AddControllersExtension(this IServiceCollection services)
         {
             services.AddControllers()
                 .AddJsonOptions(options =>
                 {
+                    // Configure JSON serializer to use camelCase
                     options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
                     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-                })
-                ;
+                });
         }
 
-        //Configure CORS to allow any origin, header and method. 
-        //Change the CORS policy based on your requirements.
-        //More info see: https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-3.0
-
+        // Extension method to configure CORS with a policy to allow any origin, header, and method
         public static void AddCorsExtension(this IServiceCollection services)
         {
             services.AddCors(options =>
@@ -76,6 +76,7 @@
             });
         }
 
+        // Extension method to add API versioning and configure the API version explorer
         public static void AddVersionedApiExplorerExtension(this IServiceCollection services)
         {
             var apiVersioningBuilder = services.AddApiVersioning(options =>
@@ -83,36 +84,29 @@
                 options.ReportApiVersions = true;
                 options.DefaultApiVersion = new ApiVersion(1, 0);
                 options.AssumeDefaultVersionWhenUnspecified = true;
-                // Use whatever reader you want
                 options.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
                                                 new HeaderApiVersionReader("x-api-version"),
                                                 new MediaTypeApiVersionReader("x-api-version"));
-            }); // Nuget Package: Asp.Versioning.Mvc
-
+            });
             apiVersioningBuilder.AddApiExplorer(options =>
             {
-                // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
-                // note: the specified format code will format the version as "'v'major[.minor][-status]"
                 options.GroupNameFormat = "'v'VVV";
-
-                // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
-                // can also be used to control the format of the API version in route templates
                 options.SubstituteApiVersionInUrl = true;
-            }); // Nuget Package: Asp.Versioning.Mvc.ApiExplorer
-
+            });
         }
+
+        // Extension method to add API versioning for the service
         public static void AddApiVersioningExtension(this IServiceCollection services)
         {
             services.AddApiVersioning(config =>
             {
-                // Specify the default API Version as 1.0
                 config.DefaultApiVersion = new ApiVersion(1, 0);
-                // If the client hasn't specified the API version in the request, use the default API version number 
                 config.AssumeDefaultVersionWhenUnspecified = true;
-                // Advertise the API versions supported for the particular endpoint
                 config.ReportApiVersions = true;
             });
         }
+
+        // Extension method to set up JWT authentication
         public static void AddJWTAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -123,6 +117,8 @@
                     options.Audience = configuration["Sts:Audience"];
                 });
         }
+
+        // Extension method to add authorization policies based on roles
         public static void AddAuthorizationPolicies(this IServiceCollection services, IConfiguration configuration)
         {
             string admin = configuration["ApiRoles:AdminRole"],
@@ -135,7 +131,5 @@
                 options.AddPolicy(AuthorizationConsts.EmployeePolicy, policy => policy.RequireRole(employee, manager, admin));
             });
         }
-
     }
-
 }
