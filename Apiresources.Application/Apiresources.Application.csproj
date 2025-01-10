@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="FluentValidation" Version="11.9.2" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.2" />
-    <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="8.1.5" />
-    <PackageReference Include="MediatR" Version="12.4.0" />
-    <PackageReference Include="Scrutor" Version="4.2.2" />
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+    <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="9.0.7" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Scrutor" Version="5.1.1" />
   </ItemGroup>
 
   <ItemGroup>
